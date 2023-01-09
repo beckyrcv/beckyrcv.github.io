@@ -3,10 +3,12 @@
 
  <head>
      <title>Test site</title>
+     <!-- load jquery (used to build repeating site sections) -->
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
      <script>
+         // load navigation bar
          $(function() {
-             $("#includedContent").load("nav.html");
+             $("#nav_div").load("nav.html");
          });
 
      </script>
@@ -15,7 +17,6 @@
  <body>
      <div id="nav_div"></div>
      This is a test site.
-     <div id="includedContent"></div>
  </body>
 
  </html>
