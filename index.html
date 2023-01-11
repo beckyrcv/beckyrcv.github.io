@@ -2,9 +2,19 @@
  <html>
 
  <head>
-     <title>Test site</title>
-     <!--      load jquery (used to build repeating site sections)-->
+     <title>Vandewalle | Home</title>
+
+     <!--      load primary css -->
+     <link href="style.css" rel="stylesheet" type="text/css" />
+
+     <!--      load jquery (used to build repeating site sections) -->
      <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+
+     <!--      load icon set -->
+     <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
+
+     <!--      build page sections -->
+     <!--
      <script>
          // load navigation bar
          $(function() {
@@ -12,11 +22,66 @@
          });
 
      </script>
+-->
  </head>
 
  <body>
-     <div id="nav_div"></div>
-     This is a test site.
+     <div class="top_bar"></div>
+
+     <!--      Add the navigation menu -->
+     <div id="nav_div">
+         <nav id="sitenav">
+             <ul id="navlist">
+                 <li><a href="./index.html" title="Home">Home</a></li>
+                 <li><a href="./about/about.html" title="About">About</a></li>
+                 <li><a href="./research/research_index.html" title="Research">Research</a></li>
+                 <li><a href="./research/research_index.html" title="Research">Teaching</a></li>
+                 <li><a href="./lang/lang_index.html" title="Language Notes">Language Notes</a></li>
+                 <li><a href="./design/design_index.html" title="Art and Design">Art &amp; Design</a></li>
+                 <li><a href="./projects/project_index.html" title="Projects">Fun Projects</a></li>
+             </ul>
+         </nav>
+         <hr class="nav_hr">
+     </div>
+     <div class="sidenav">
+         <img src="./img/becky.JPG" width="200px">
+         <a href="https://illinois.edu/">University of Illinois Urbana Champaign</a>
+         <a href="https://cybergis.illinois.edu/">CyberGIS Center</a>
+         <a href="https://cigi.illinois.edu/">CIGILab</a>
+         <a href="https://www.researchgate.net/profile/Rebecca-Vandewalle">
+             <iconify-icon inline icon="simple-icons:researchgate"></iconify-icon><span class="media_content">&nbsp;ResearchGate</span>
+         </a>
+         <a href="https://twitter.com/beckvalle">
+             <iconify-icon inline icon="simple-icons:twitter"></iconify-icon><span class="media_content">&nbsp;Twitter</span>
+         </a>
+         <a href="https://www.linkedin.com/in/rebecca-vandewalle-59b056a3/">
+             <iconify-icon inline icon="simple-icons:linkedin"></iconify-icon><span class="media_content">&nbsp;Linkedin</span>
+         </a>
+         <a href="https://github.com/beckvalle">
+             <iconify-icon inline icon="simple-icons:github"></iconify-icon><span class="media_content">&nbsp;GitHub</span>
+         </a>
+         <a href="https://scholar.google.com/citations?user=1WzQbAgAAAAJ">
+             <iconify-icon inline icon="simple-icons:googlescholar"></iconify-icon><span class="media_content">&nbsp;Google Scholar</span>
+         </a>
+         <a href="https://orcid.org/0000-0001-6890-7811">
+             <iconify-icon inline icon="simple-icons:orcid"></iconify-icon>
+             <span class="media_content">&nbsp;ORCID</span>
+         </a>
+     </div>
+
+     <div class="main_index_main">
+         <h2>Head</h2>
+         <p>Rebecca C. (Becky) Vandewalle earned her Bachelors degree in Greek and Roman Studies from Rhodes College in 2012. After completing a Post-Baccalaureate program in Classics at the University of Pennsylvania from 2012-2014, Becky earned her MSc in GIS and Archaeology from the University of Edinburgh in 2015. After a year working in Sunnyvale, California, Becky moved to Urbana, IL to study Geography & GIS at the University of Illinois Urbana Champaign.</p>
+         <div>
+             <p>IGUIDE</p>
+         </div>
+         <div>
+             <p>CyberGISX</p>
+         </div>
+     </div>
+
+
+     <div class="bottom_bar"></div>
  </body>
 
  </html>

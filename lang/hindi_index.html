@@ -2,7 +2,7 @@
  <html>
 
  <head>
-     <title>Vandewalle | Language Work</title>
+     <title>Vandewalle | Hindi Page</title>
 
      <!--      load primary css -->
      <link href="../style.css" rel="stylesheet" type="text/css" />
@@ -10,7 +10,14 @@
      <!--      load icon set -->
      <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
 
-     <!--      load jquery (used to build repeating site sections)-->
+     <!--      load game css -->
+     <link href="game_style.css" rel="stylesheet" type="text/css" />
+
+     <!--      load game script -->
+     <script src="games.js"></script>
+
+     <!--      load jquery (used to build repeating site sections)
+         -->
      <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 
      <!--      build page sections -->
@@ -20,13 +27,14 @@
          $(function() {
              $("#nav_div").load("../branchnav.html");
          });
-
      </script>
 -->
  </head>
 
  <body>
      <div class="top_bar"></div>
+
+     <!--      Add the navigation menu -->
      <div id="nav_div">
          <nav id="sitenav">
              <ul id="navlist">
@@ -42,11 +50,38 @@
      </div>
      <div class="main">
          <div>
-             This will be about some of my language interests. Click a language to view the resources for it!
-             <button type="button" onclick="window.location.href='./hindi_index.html';">Hindi!</button>
+             <h2>Head</h2>
+             <p>This is the reference page for Hindi notes!
+                 Grammer Overview
+                 Review Games</p>
+         </div>
+         <div id="color_game" class="game matching">
+             रंग/color
+             सफेद/white
+             पीला/yellow
+             हरा/green
+             स््लेटी/grey
+             भूरा/brown
+             संतरा/orange
+             केसरिया/safron
+             गेरुआ/ochre
+             काला/black
+             जामुनी/purple
+             गुलाबी/pink
+             लाल/red
+             भदमैला/beige
+             हल््का/light
+             गहरा/dark
          </div>
      </div>
+
      <div class="bottom_bar"></div>
+
+
+     <script type="text/javascript">
+         buildGame();
+
+     </script>
  </body>
 
  </html>

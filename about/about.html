@@ -2,9 +2,19 @@
  <html>
 
  <head>
-     <title>About</title>
+     <title>Vandewalle | About</title>
+
+     <!--      load primary css -->
+     <link href="../style.css" rel="stylesheet" type="text/css" />
+
      <!--      load jquery (used to build repeating site sections)-->
      <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+
+     <!--      load icon set -->
+     <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
+
+     <!--      build page sections -->
+     <!--
      <script>
          // load navigation bar
          $(function() {
@@ -12,11 +22,34 @@
          });
 
      </script>
+-->
  </head>
 
  <body>
-     <div id="nav_div"></div>
-     This will be an about me page.
+     <div class="top_bar"></div>
+
+     <!--      Add the navigation menu -->
+     <div id="nav_div">
+         <nav id="sitenav">
+             <ul id="navlist">
+                 <li><a href="../index.html" title="Home">Home</a></li>
+                 <li><a href="../about/about.html" title="About">About</a></li>
+                 <li><a href="../research/research_index.html" title="Research">Research</a></li>
+                 <li><a href="../lang/lang_index.html" title="Language Notes">Language Notes</a></li>
+                 <li><a href="../projects/project_index.html" title="Projects">Projects</a></li>
+                 <li><a href="../design/design_index.html" title="Art and Design">Art &amp; Design</a></li>
+             </ul>
+         </nav>
+         <hr class="nav_hr">
+     </div>
+     <div class="main">
+         <div>
+             <h2>Head</h2>
+             <p>Rebecca C. (Becky) Vandewalle earned her Bachelors degree in Greek and Roman Studies from Rhodes College in 2012. After completing a Post-Baccalaureate program in Classics at the University of Pennsylvania from 2012-2014, Becky earned her MSc in GIS and Archaeology from the University of Edinburgh in 2015. After a year working in Sunnyvale, California, Becky moved to Urbana, IL to study Geography & GIS at the University of Illinois Urbana Champaign.</p>
+         </div>
+     </div>
+
+     <div class="bottom_bar"></div>
  </body>
 
  </html>
