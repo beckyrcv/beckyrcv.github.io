@@ -3,15 +3,15 @@
 @font-face {
     font-family: GrotleyRegular;
     src: url('GrotleyRegular-mLEWv.otf');
-    src: url('GrotleyRegular-mLEWv.otf'), format('opentype'),
-        url('GrotleyRegular-mLEWv.ttf'), format('truetype');
+    src: url('GrotleyRegular-mLEWv.otf') format('opentype'),
+        url('GrotleyRegular-mLEWv.ttf') format('truetype');
 }
 
 @font-face {
     font-family: GrotleyItalic;
     src: url('GrotleyItalic-7BD9D.otf');
-    src: url('GrotleyItalic-7BD9D.otf'), format('opentype'),
-        url('GrotleyItalic-7BD9D.ttf'), format('truetype');
+    src: url('GrotleyItalic-7BD9D.otf') format('opentype'),
+        url('GrotleyItalic-7BD9D.ttf') format('truetype');
 }
 
 /* base stylings */
