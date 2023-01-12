@@ -92,6 +92,10 @@ img :not(div#map img) {
     outline: 1px solid;
 }
 
+.img_holder {
+    text-align: center;
+}
+
 .box {
     box-shadow:
         inset 0px -0.4em lightskyblue;
@@ -141,13 +145,6 @@ hr {
 img {
     border-color: lightskyblue;
 }
-
-/*
-
-.box {
-    border-top: 0.4em solid lightskyblue;
-}
-*/
 
 a:hover,
 ul#navlist li a:hover,
