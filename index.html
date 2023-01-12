@@ -16,19 +16,10 @@
      <!--      build page sections -->
      <script>
          // load navigation bar
-         //         $(function() {
-         //             $("#nav_div").load("./assets/rootnav.html");
-         //             $("#sidenav_div").load("./assets/rootsidebar.html");
-         //         });
-
-         //         $("#nav_div").load("./assets/rootnav.html");
-         //         $("#sidenav_div").load("./assets/rootsidebar.html");
-
-         function start() {
+         $(function() {
              $("#nav_div").load("./assets/rootnav.html");
              $("#sidenav_div").load("./assets/rootsidebar.html");
-         };
-         window.onload = start;
+         });
 
      </script>
 
@@ -45,7 +36,7 @@
      <div class="page_body">
 
          <!--      Add the sidebar --->
-         <div class="sidenav_div"></div>
+         <div id="sidenav_div"></div>
 
          <!--      Main page content! --->
          <div class="main_index_main">
