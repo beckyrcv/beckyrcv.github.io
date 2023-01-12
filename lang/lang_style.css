@@ -2,16 +2,18 @@
 
 @font-face {
     font-family: Annapurna;
-    src: url(AnnapurnaSIL-Regular.woff), format('woff'),
-        url(AnnapurnaSIL-Regular.ttf), format('truetype');
+    src: url('AnnapurnaSIL-Regular.woff');
+    src: url('AnnapurnaSIL-Regular.woff'), format('woff'),
+        url('AnnapurnaSIL-Regular.ttf'), format('truetype');
     unicode-range: U+0900-097F, U+A8E0-A8FB, U+A830-A839;
     font-style: normal;
 }
 
 @font-face {
     font-family: AnnapurnaBold;
-    src: url(AnnapurnaSIL-Bold.woff), format('woff'),
-        url(AnnapurnaSIL-Regular.ttf), format('truetype');
+    src: url('AnnapurnaSIL-Bold.woff');
+    src: url('AnnapurnaSIL-Bold.woff'), format('woff'),
+        url('AnnapurnaSIL-Regular.ttf'), format('truetype');
     unicode-range: U+0900-097F, U+A8E0-A8FB, U+A830-A839;
     font-style: bold;
 }
