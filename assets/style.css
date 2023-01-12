@@ -1,0 +1,641 @@
+/* included fonts */
+
+@font-face {
+    font-family: GrotleyRegular;
+    src: url(GrotleyRegular-mLEWv.otf), format('opentype'),
+        url(GrotleyRegular-mLEWv.ttf), format('truetype');
+}
+
+@font-face {
+    font-family: GrotleyItalic;
+    src: url(GrotleyItalic-7BD9D.otf), format('opentype'),
+        url(GrotleyItalic-7BD9D.ttf), format('truetype');
+}
+
+/* base stylings */
+
+body {
+    font-family: Optima, sans-serif, monospace;
+    margin: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+/* base text stylings */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: GrotleyRegular, sans-serif, monospace;
+    letter-spacing: 0.08em;
+}
+
+h1 em,
+h2 em,
+h3 em,
+h4 em,
+h5 em,
+h6 em {
+    font-family: GrotleyRegular, sans-serif, monospace;
+}
+
+h1 i,
+h2 i,
+h3 i,
+h4 i,
+h5 i,
+h6 i {
+    font-family: GrotleyRegular, sans-serif, monospace;
+}
+
+p {
+    font-family: Optima, monospace;
+}
+
+b {
+    font-family: Optima, monospace;
+    font-style: bold;
+}
+
+strong {
+    font-family: Optima, monospace;
+    font-style: bold;
+}
+
+ul#navlist li a {
+    font-family: GrotleyRegular, Optima, monospace;
+}
+
+.sidenav .contact_link a {
+    font-family: GrotleyRegular, Optima, monospace;
+}
+
+.sidenav .my_name {
+    font-family: GrotleyRegular, Optima, monospace;
+}
+
+.sidenav a {
+    font-family: Optima, monospace;
+}
+
+/* image stylings */
+
+img :not(div#map img) {
+    display: block;
+    border: 0.4em solid;
+    outline: 1px solid;
+}
+
+.box {
+    box-shadow:
+        inset 0px -0.4em lightskyblue;
+    border-bottom: 1px solid darkblue;
+}
+
+.svg_icon {
+    fill: currentColor;
+    stroke: currentColor;
+    display: block;
+}
+
+/* color stylings */
+
+body {
+    color: darkblue;
+    background-color: aliceblue;
+    border-color: lightskyblue;
+}
+
+body,
+highlight {
+    outline-color: darkblue;
+}
+
+p {
+    color: black;
+}
+
+hr {
+    border: 0.5px solid darkblue;
+}
+
+.top_bar,
+.bottom_bar,
+.back_dark_acc {
+    background-color: cornflowerblue;
+}
+
+.top_sub_bar,
+.top_nav_bar,
+.accent_bar,
+.back_light_acc {
+    background-color: lightskyblue;
+}
+
+img {
+    border-color: lightskyblue;
+}
+
+/*
+
+.box {
+    border-top: 0.4em solid lightskyblue;
+}
+*/
+
+a:hover,
+ul#navlist li a:hover,
+.sidenav a:hover {
+    color: cornflowerblue;
+}
+
+a:visited,
+ul#navlist li a:visited,
+.sidenav a:visited {
+    color: darkblue;
+}
+
+a:visited:hover,
+ul#navlist li a:visited:hover,
+.sidenav a:visited:hover {
+    color: grey;
+}
+
+/* accent bar stylings */
+.top_bar {
+    top: 0;
+    height: 0.8em;
+    width: 100%;
+    position: fixed;
+}
+
+.top_hr {
+    top: 0.3em;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+}
+
+.top_sub_bar {
+    top: 0.8em;
+    height: 0.6em;
+    width: 100%;
+    position: fixed;
+}
+
+.top_nav_bar {
+    height: 0.6em;
+    width: 100%;
+}
+
+.accent_bar {
+    height: 0.4em;
+    width: 100%;
+}
+
+.bottom_hr {
+    bottom: 0.5em;
+    width: 100%;
+    position: fixed;
+    z-index: 2001;
+}
+
+.bottom_bar {
+    bottom: 0;
+    height: 1em;
+    width: 100%;
+    position: fixed;
+    background-attachment: scroll;
+    z-index: 2000;
+}
+
+hr.nav_hr {
+    margin-top: 0;
+}
+
+hr.accent_hr {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+/* navigation menu stylings */
+
+ul#navlist {
+    margin-top: 1.7em;
+    margin-bottom: 0.2em;
+    padding-left: 1em;
+    padding-right: 1em;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+ul#navlist li {
+    text-align: center;
+}
+
+ul#navlist li a {
+    color: darkblue;
+    text-transform: uppercase;
+    font-size: 2em;
+}
+
+/* specifically to style the little separation marker
+note-font family is important here */
+ul#navlist li:not(:last-child)::after {
+    color: darkblue;
+    font-family: Georgia;
+    content: "\2039\203A";
+    width: 0.66em;
+    font-size: 2em;
+    letter-spacing: -0.25em;
+    margin-right: 0.5em;
+    margin-left: 0.25em;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.page_body {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    height: inherit;
+}
+
+/* style body */
+.sidenav {
+    width: 180px;
+    background: #eee;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    height: fit-content;
+}
+
+.sidenav .contact_link a {
+    padding-bottom: 8px;
+    color: darkblue;
+    width: inherit;
+    justify-content: center;
+    letter-spacing: 0.08em;
+}
+
+.sidenav .my_name {
+    padding-top: 14px;
+    padding-bottom: 4px;
+    color: darkblue;
+    text-align: center;
+    width: inherit;
+    letter-spacing: 0.08em;
+}
+
+.sidenav a {
+    display: flex;
+    padding-top: 8px;
+    text-decoration: none;
+    color: darkblue;
+}
+
+.sidenav .sidenavlinks {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.sidenav img {
+    width: 180px;
+    outline: 0px;
+    border: 0px;
+}
+
+.sidenav .svg_icon {
+    fill: currentColor;
+    stroke: currentColor;
+    height: 1em;
+    width: 1em;
+    vertical-align: -0.125em;
+}
+
+.sidenav .nav_icon {
+    display: block;
+}
+
+.main_index_main {
+    padding-left: 1em;
+    margin-right: 1em;
+    width: 100%;
+    height: inherit;
+}
+
+.box_holder {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 0.5em;
+    grid-row-gap: 0.5em;
+    margin 1em;
+    height: 90%;
+    overflow-y: scroll;
+    flex-basis: min-content;
+    flex-grow: 1;
+}
+
+.box_holder.row {
+    flex-direction: row;
+}
+
+.box_holder.col {
+    flex-direction: column;
+}
+
+.box {
+    padding: 0.5em;
+    position: relative;
+    background-color: #dfeaff;
+    flex-grow: 1;
+    flex-basis: content;
+}
+
+.box:hover {
+    background-color: #eee;
+}
+
+.closing_box {
+    height: 10em;
+}
+
+.break {
+    flex-basis: 100%;
+    height: 0;
+}
+
+.break-column {
+    flex-basis: 100%;
+    width: 0;
+}
+
+.box h1:first-child,
+.box h2:first-child,
+.box h3:first-child,
+.box h4:first-child,
+.box h5:first-child,
+.box h6:first-child {
+    margin-top: 0;
+}
+
+.box h1,
+.box h2,
+.box h3,
+.box h4,
+.box h5,
+.box h6 {
+    margin-bottom: 0;
+}
+
+.box p {
+    margin-top: 0.2em;
+}
+
+.box p:last-child {
+    margin-bottom: 0;
+}
+
+.sidenav a span.media_content {
+    display: block;
+    visibility: normal;
+    padding-left: 0.5em;
+    line-height: 1.2em;
+}
+
+@media screen and ((max-width: 700px) or (max-height: 700px)) {
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    h2 {
+        font-size: 1.17em;
+    }
+
+    h3 {
+        font-size: 1em;
+    }
+
+    p {
+        font-size: .83em;
+    }
+
+    ul#navlist li a {
+        font-size: 1.5em;
+    }
+
+    ul#navlist li:not(:last-child)::after {
+        font-size: 1.5em;
+        top: -0.2em;
+    }
+
+    .sidenav {
+        width: 60px;
+        z-index: 1;
+        left: 10px;
+        background: #eee;
+        display: flex;
+        flex-wrap: wrap;
+        padding-top: 8px;
+    }
+
+    .sidenav .my_name {
+        font-size: 0.5em;
+        color: darkblue;
+        width: inherit;
+        text-transform: capitalize;
+        text-align: center;
+        padding-top: 8px;
+    }
+
+    .sidenav .contact_link {
+        width: inherit;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .sidenav .contact_link a {
+        font-size: 0.5em;
+        color: darkblue;
+        text-transform: capitalize;
+        padding-top: 8px;
+    }
+
+    hr.img_hr {
+        display: none;
+    }
+
+    .sidenavlinks {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .sidenav .nav_icon {
+        margin: .2em;
+    }
+
+    .sidenav .svg_holder {
+        margin: .2em;
+    }
+
+    .sidenav a {
+        text-decoration: none;
+        display: flex;
+        color: darkblue;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .sidenav a span.media_content {
+        display: none;
+    }
+
+    .sidenav img {
+        width: 60px;
+        display: block;
+    }
+
+    .main_index_main {}
+}
+
+
+/* style dropdowns (details + summary) */
+
+summary {
+    display: block;
+}
+
+details {
+    padding-left: 1em;
+}
+
+summary + details {
+    margin-top: 1em;
+}
+
+summary h3,
+summary h4,
+summary h5 {
+    display: inline;
+}
+
+summary::after {
+    margin-left: 1ch;
+    display: inline-block;
+    transition: 0.2s;
+    content: '\203A';
+    /* chevron */
+    margin-bottom: 1em;
+}
+
+details[open] > summary::after {
+    transform: rotate(90deg);
+    margin-bottom: 0em;
+}
+
+/* style custom vocab */
+
+.vocab {
+    border-bottom: 1px dotted;
+}
+
+.non-eng {
+    font-style: italic;
+}
+
+/* style popups */
+
+.tooltip {
+    background-position: 0 0;
+    border: 1px solid black;
+    background-color: lightgray;
+}
+
+/* style tables */
+
+table {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+table.dashedSpaceV,
+table.dashedSpaceV tr td:first-child {
+    border-style: none none none none;
+}
+
+table.dashedSpaceV tr td:not(:first-child) {
+    border-style: none none none none;
+    margin-left: 0px;
+    background-image: linear-gradient(to top, #f20afb 0%, #f20afb 50%, transparent 50%);
+    background-size: 1px 8px;
+    background-repeat: repeat-y;
+}
+
+table.dashedSpaceH,
+table.dashedSpaceH tr td:first-child {
+    height: 1px;
+    background-image: linear-gradient(to right, #f20afb 0%, #f20afb 50%, transparent 50%);
+    background-size: 8px 1px;
+    background-repeat: repeat-x;
+}
+
+table.nested,
+th.nested,
+tr.nested,
+td.nested {
+    padding: 5px;
+    border-style: none;
+}
+
+td.nested {
+    border-collapse: collapse;
+    border-style: none solid none none;
+}
+
+table.nested tr:first-child th,
+table.nested tr:first-child td {
+    border-top: 0;
+}
+
+
+table.nested tr:last-child td {
+    border-bottom: 0;
+}
+
+
+table.nested tr td:first-child,
+table.nested tr th:first-child {
+    border-left: 0;
+}
+
+table.nested tr td:last-child,
+table.nested tr th:last-child {
+    border-right: 0;
+    border-left: 0;
+
+}
+
+table.nested tr td:last-child td,
+table.nested tr th:last-child td {
+    border-right: 0;
+
+}

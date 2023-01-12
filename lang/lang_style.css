@@ -1,0 +1,37 @@
+/* fonts for devanagari */
+
+@font-face {
+    font-family: Annapurna;
+    src: url(AnnapurnaSIL-Regular.woff), format('woff'),
+        url(AnnapurnaSIL-Regular.ttf), format('truetype');
+    unicode-range: U+0900-097F, U+A8E0-A8FB, U+A830-A839;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: AnnapurnaBold;
+    src: url(AnnapurnaSIL-Bold.woff), format('woff'),
+        url(AnnapurnaSIL-Regular.ttf), format('truetype');
+    unicode-range: U+0900-097F, U+A8E0-A8FB, U+A830-A839;
+    font-style: bold;
+}
+
+/* add language fonts to text stylings */
+
+body {
+    font-family: Annapurna, Optima, sans-serif, monospace;
+}
+
+p {
+    font-family: Annapurna, Optima, monospace;
+}
+
+b {
+    font-family: AnnapurnaBold, Optima, monospace;
+    font-style: bold;
+}
+
+strong {
+    font-family: AnnapurnaBold, Optima, monospace;
+    font-style: bold;
+}
