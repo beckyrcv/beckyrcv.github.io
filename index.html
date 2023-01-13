@@ -15,19 +15,7 @@
      <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 
      <!--      build page sections -->
-     <script>
-         // load navigation bar
-         $(function() {
-             $("#nav_div").load("./assets/rootnav.html");
-             $("#sidenav_div").load("./assets/rootsidebar.html");
-             $('.carousel').slick({
-                 slidesToShow: 3,
-                 dots: true,
-                 centerMode: true,
-             });
-         });
 
-     </script>
 
  </head>
 
@@ -113,6 +101,19 @@
      <!--      load jquery (used to build repeating site sections) -->
      <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
      <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+     <script>
+         // load navigation bar
+         $(function() {
+             $("#nav_div").load("./assets/rootnav.html");
+             $("#sidenav_div").load("./assets/rootsidebar.html");
+             $('.carousel').slick({
+                 slidesToShow: 3,
+                 dots: true,
+                 centerMode: true,
+             });
+         });
+
+     </script>
 
  </body>
 
