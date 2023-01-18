@@ -11,11 +11,11 @@
      <!--      load icon set -->
      <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
 
-     <!--      load slider -->
-     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+     <!--      load jquery (used to build repeating site sections) -->
+     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 
      <!--      build page sections -->
-
+     <script type="text/javascript" src="./assets/page_load_root.js"></script>
 
  </head>
 
@@ -37,15 +37,37 @@
              <div class="box_holder">
 
                  <!--      Slider Box? --->
-                 <div class="box" width="100%">
-                     <div class="carousel">
-                         <div>your content 1</div>
-                         <div>your content 2</div>
-                         <div>your content 3</div>
-                         <div>your content 4</div>
-                         <div>your content 5</div>
-                         <div>your content 6</div>
-                     </div>
+                 <div class="box">
+                     <section class="slider-wrapper">
+                         <button class="slide-arrow" id="slide-arrow-prev">
+                             &#8249;
+                         </button>
+
+                         <button class="slide-arrow" id="slide-arrow-next">
+                             &#8250;
+                         </button>
+
+                         <ul class="slides-container" id="slides-container">
+                             <li class="slide">
+                                 <div class="box">
+                                     <h2>Nobel</h2>
+                                     <a href="https://istem.illinois.edu/news/nobel.project.2021.html" target="_blank" rel="noopener noreferrer">Nobel Project</a>
+                                 </div>
+                             </li>
+                             <li class="slide">
+                                 <div class="box">
+                                     <h2>I-GUIDE FAQ</h2>
+                                     <a href="https://sustainability.illinois.edu/i-guide-an-faq/" target="_blank" rel="noopener noreferrer">I-GUIDE FAQ</a>
+                                 </div>
+                             </li>
+                             <li class="slide">
+                                 <div class="box">
+                                     <h2>I-GUIDE</h2>
+                                     <a href="https://iguide.illinois.edu/news_events/vandewalle_video/" target="_blank" rel="noopener noreferrer">I-GUIDE Interview</a>
+                                 </div>
+                             </li>
+                         </ul>
+                     </section>
                  </div>
 
                  <div class="box_holder col">
@@ -74,46 +96,18 @@
                      <h2>I-GUIDE</h2>
                      <p>This is some text about I-Guide.</p>
                  </div>
-                 <div class="box">
-                     <h2>Nobel</h2>
-                     <a href="https://istem.illinois.edu/news/nobel.project.2021.html" target="_blank" rel="noopener noreferrer">Nobel Project</a>
-                 </div>
-                 <div class="box">
-                     <h2>I-GUIDE FAQ</h2>
-                     <a href="https://sustainability.illinois.edu/i-guide-an-faq/" target="_blank" rel="noopener noreferrer">I-GUIDE FAQ</a>
-                 </div>
-                 <div class="box">
-                     <h2>I-GUIDE</h2>
-                     <a href="https://iguide.illinois.edu/news_events/vandewalle_video/" target="_blank" rel="noopener noreferrer">I-GUIDE Interview</a>
-                 </div>
+
                  <div class="closing_box"></div>
              </div>
          </div>
      </div>
 
-
-
-
      <!--      Bottom site elements --->
      <hr class="bottom_hr">
      <div class="bottom_bar"></div>
 
-     <!--      load jquery (used to build repeating site sections) -->
-     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-     <script>
-         // load navigation bar
-         $(function() {
-             $("#nav_div").load("./assets/rootnav.html");
-             $("#sidenav_div").load("./assets/rootsidebar.html");
-             $('.carousel').slick({
-                 slidesToShow: 3,
-                 dots: true,
-                 centerMode: true,
-             });
-         });
-
-     </script>
+     <!--      Slider Script --->
+     <script type="text/javascript" src="./assets/features.js"></script>
 
  </body>
 
