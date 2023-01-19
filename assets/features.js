@@ -27,7 +27,6 @@
  function addLinkPrefix(eles) {
      for (var i = 0; i < eles.length; i++) {
          eles[i].href = getLinkPrefix(eles[i]);
-         console.log(eles[i].href);
      }
  }
 
