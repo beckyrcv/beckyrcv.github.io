@@ -15,12 +15,33 @@ function toggleClass(a, class_name, event) {
     event.target.classList.toggle(class_name);
 }
 
+function contains(big, little) {
+    return ((little.left >= big.left) &&
+        (little.right <= big.right) &&
+        (little.top >= big.top) &&
+        (little.bottom <= big.bottom));
+}
+
+function checkPosition(a, cat_div, event) {
+    var categories = document.getElementsByClassName(cat_div);
+    for (var j = 0; j < categories.length; j++) {
+        var cat_divs = categories[j].querySelectorAll("div");
+        for (var i = 0; i < cat_divs.length; i++) {
+            if (contains(cat_divs[i].getBoundingClientRect(), event.target.getBoundingClientRect()) === true) {
+                if (cat_divs[i].innerHTML === event.target.dataset.target) {
+                    event.target.style.display = "none";
+                }
+            }
+        }
+    }
+}
+
 function drawSVGCircle(cx, cy, r, stroke, stroke_width, fill_color) {
     return "<svg style='pointer-events: none;'><circle cx='" + cx + "' cy='" + cy + "' r='" + r + "' stroke='" + stroke + "' stroke-width='" + stroke_width + "' fill='#" + fill_color + "' /></svg>";
 }
 
 //find nearest square
-const nearest_sq = n => Math.pow(Math.round(Math.sqrt(n)), 2);
+var nearest_sq = n => Math.pow(Math.round(Math.sqrt(n)), 2);
 
 //measure width of text
 function getTextDimensions(input_ele) {
@@ -118,7 +139,6 @@ function setupMatchingGame(game_holder, input) {
     var match_map = input[0];
     var rev_match_map = input[1];
 
-
     var terms = match_map.size;
     var index_size = nearest_sq(terms * 2);
     var num_row = Math.sqrt(index_size);
@@ -205,7 +225,8 @@ function setupCatagorizingGame(game_holder, input) {
     var game_html = "<div class='catagorizing_game'>" + "<div class='matching_table'>";
 
     for (var j = 0; j < match_map.size; j++) {
-        game_html += "<div class='active'>" + Array.from(match_map.keys())[j] + "</div>";
+        game_html += "<div class='active' data-target='" + match_map.get(Array.from(match_map.keys())[j]).toString().split(",")[0] + "'>" +
+            Array.from(match_map.keys())[j] + "</div>";
     }
     game_html += "</div>";
     game_html += "<div class='spacer'></div>";
@@ -224,26 +245,14 @@ function setupCatagorizingGame(game_holder, input) {
 
 function addCatagorizingListeners(match_map, categories, game_holder, game_setup_record) {
 
-    var game_table = document.querySelector("div.matching_table");
-    var tds = game_table.querySelectorAll("div");
+    var tds = document.querySelector("div.matching_table").querySelectorAll("div");
 
     for (var i = 0; i < tds.length; i++) {
-        tds[i].addEventListener("click", toggleClass.bind(null, event, "match_selected"));
-        tds[i].addEventListener("mousedown", createCopy.bind(null, event, game_holder.id));
+        dragElement(tds[i]);
+        tds[i].addEventListener("click", checkPosition.bind(null, event, "categories_table"));
     }
 }
-
-function createCopy(event, game_id) {
-    const rect = event.target.getBoundingClientRect();
-    var new_div = document.createElement("div");
-    new_div.classList.add('drag_match');
-    new_div.style.setProperty("top", rect.top + "px");
-    new_div.style.setProperty("left", rect.left + "px");
-    new_div.style.setProperty("width", window.getComputedStyle(event.target).getPropertyValue("width"));
-    new_div.style.setProperty("height", window.getComputedStyle(event.target).getPropertyValue("height"));
-    new_div.innerHTML = event.target.innerHTML;
-    document.body.appendChild(new_div);
-}
+//https://stackoverflow.com/questions/3680429/click-through-div-to-underlying-elements
 
 function buildGame() {
     var game_holders = document.getElementsByClassName("game");
@@ -259,4 +268,54 @@ function buildGame() {
         }
     }
 
+}
+
+//dragElement(document.getElementById("mydiv"));
+
+// drag element functions 
+// from https://www.w3schools.com/howto/howto_js_draggable.asp
+
+function dragElement(elmnt) {
+    var pos1 = 0,
+        pos2 = 0,
+        pos3 = 0,
+        pos4 = 0;
+    var top = 0,
+        left = 0;
+
+    elmnt.onmousedown = dragMouseDown;
+
+    function dragMouseDown(e) {
+
+        e = e || window.event;
+        e.preventDefault();
+        // get the mouse cursor position at startup:
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+
+        document.onmouseup = closeDragElement;
+        // call a function whenever the cursor moves:
+        document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // calculate the new cursor position:
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        top = top - pos2;
+        left = left - pos1;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        elmnt.style.top = top + "px";
+        elmnt.style.left = left + "px";
+
+    }
+
+    function closeDragElement() {
+        // stop moving when mouse button is released:
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
 }
