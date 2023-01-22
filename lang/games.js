@@ -1,5 +1,49 @@
-// from https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+// drag element functions 
+// from https://www.w3schools.com/howto/howto_js_draggable.asp
+function dragElement(elmnt) {
+    var pos1 = 0,
+        pos2 = 0,
+        pos3 = 0,
+        pos4 = 0;
+    var top = 0,
+        left = 0;
 
+    elmnt.onmousedown = dragMouseDown;
+
+    function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // get the mouse cursor position at startup:
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+
+        document.onmouseup = closeDragElement;
+        // call a function whenever the cursor moves:
+        document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // calculate the new cursor position:
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        top = top - pos2;
+        left = left - pos1;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        elmnt.style.top = top + "px";
+        elmnt.style.left = left + "px";
+    }
+
+    function closeDragElement() {
+        // stop moving when mouse button is released:
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+}
+
+// from https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 /* Randomize array in-place using Durstenfeld shuffle algorithm */
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
@@ -10,11 +54,16 @@ function shuffleArray(array) {
     }
 }
 
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
 /* Event listener for table elements to know if they have been selected */
 function toggleClass(a, class_name, event) {
     event.target.classList.toggle(class_name);
 }
 
+// see if little div is within big div
 function contains(big, little) {
     return ((little.left >= big.left) &&
         (little.right <= big.right) &&
@@ -22,6 +71,7 @@ function contains(big, little) {
         (little.bottom <= big.bottom));
 }
 
+// see if moved div is within the correct category box
 function checkPosition(a, cat_div, event) {
     var categories = document.getElementsByClassName(cat_div);
     for (var j = 0; j < categories.length; j++) {
@@ -30,14 +80,16 @@ function checkPosition(a, cat_div, event) {
             if (contains(cat_divs[i].getBoundingClientRect(), event.target.getBoundingClientRect()) === true) {
                 if (cat_divs[i].innerHTML === event.target.dataset.target) {
                     event.target.style.display = "none";
+                    event.target.classList.add("correct");
                 }
             }
         }
     }
 }
 
+// draw a svg circle with specified fill color
 function drawSVGCircle(cx, cy, r, stroke, stroke_width, fill_color) {
-    return "<svg style='pointer-events: none;'><circle cx='" + cx + "' cy='" + cy + "' r='" + r + "' stroke='" + stroke + "' stroke-width='" + stroke_width + "' fill='#" + fill_color + "' /></svg>";
+    return "<svg style='pointer-events: none;'><circle cx='" + cx + "' cy='" + cy + "' r='" + r + "' stroke='" + stroke + "' stroke-width='" + stroke_width + "' fill='" + fill_color + "' /></svg>";
 }
 
 //find nearest square
@@ -81,7 +133,7 @@ function getFontSize(input_ele) {
     return window.getComputedStyle(input_ele).getPropertyValue("font-size");
 }
 
-function setCardWidthAndHeight(selector, width_property, height_property, width_extra, height_extra) {
+function findCardWidthAndHeight(selector, width_extra, height_extra, flip_cat) {
     var max_width = 0;
     var max_height = 0;
     var game_divs = $(selector);
@@ -90,29 +142,26 @@ function setCardWidthAndHeight(selector, width_property, height_property, width_
         max_width = (out[0] > max_width ? out[0] : max_width);
         max_height = (out[1] > max_height ? out[1] : max_height);
     }
-    document.documentElement.style.setProperty(width_property, max_width + width_extra + "px");
-    document.documentElement.style.setProperty(height_property, max_height + height_extra + "px");
+    return [max_width + width_extra + "px", max_height + height_extra + "px"];
 }
 
-function addMatchingListeners(match_map, rev_match_map, game_holder, game_setup_record) {
-    var index_size = nearest_sq(match_map.size * 2);
+function addMatchingListeners(game_holder, num, game_setup_record, matching_divs) {
+    var game_id = "game" + num;
 
-    var table = document.querySelector("div.matching_game");
+    var game_div = document.querySelector("#" + game_id);
 
-    var tds = table.querySelectorAll("div");
+    var tds = game_div.querySelectorAll("div.game_row div");
     for (var i = 0; i < tds.length; i++) {
         if (tds[i].innerHTML != "") {
             tds[i].addEventListener("click", toggleClass.bind(null, event, "match_selected"));
         }
     }
 
-    table.addEventListener("click", function () {
-        var sel_tds = table.querySelectorAll("div.match_selected");
+    game_div.addEventListener("click", function () {
+        var sel_tds = game_div.querySelectorAll("#" + game_id + " div.match_selected");
         if ((sel_tds.length) == 2) {
-            if (((match_map.get(sel_tds[0].textContent) == undefined ? "" : match_map.get(sel_tds[0].textContent)[0]) ==
-                    sel_tds[1].textContent) ||
-                ((rev_match_map.get(sel_tds[0].textContent) == undefined ? "" : rev_match_map.get(sel_tds[0].textContent)[0]) ==
-                    sel_tds[1].textContent)) {
+
+            if (sel_tds[0].dataset.source === sel_tds[1].dataset.target) {
                 sel_tds[0].innerHTML = "";
                 sel_tds[1].innerHTML = "";
                 sel_tds[0].classList.remove("match_selected");
@@ -121,201 +170,188 @@ function addMatchingListeners(match_map, rev_match_map, game_holder, game_setup_
                 sel_tds[1].removeEventListener("click", toggleClass.bind(null, event, "match_selected"));
                 sel_tds[0].classList.remove("active");
                 sel_tds[1].classList.remove("active");
+                sel_tds[0].classList.add("matching_spacer");
+                sel_tds[1].classList.add("matching_spacer");
+                sel_tds[0].classList.add("correct");
+                sel_tds[1].classList.add("correct");
             } else {
                 sel_tds[0].classList.remove("match_selected");
                 sel_tds[1].classList.remove("match_selected");
             }
         }
-        var empty_tds = table.querySelectorAll("div:empty");
-        if (empty_tds.length == index_size) {
+        var empty_tds = game_div.querySelectorAll("#" + game_id + " div.correct");
+        if (empty_tds.length == matching_divs) {
             game_holder.innerHTML = game_setup_record;
-            output = parseGameString(game_holder, "matching");
-            setupMatchingGame(game_holder, output);
+            setupGame(game_holder, num, parseGameString(game_holder));
         }
     });
 }
 
-function setupMatchingGame(game_holder, input) {
-    var match_map = input[0];
-    var rev_match_map = input[1];
-
-    var terms = match_map.size;
-    var index_size = nearest_sq(terms * 2);
-    var num_row = Math.sqrt(index_size);
-    var card_index = Array.from(Array(index_size).keys());
-    shuffleArray(card_index);
-
-    var matching_table = "<div class='matching_game'>";
-    var content;
-
-    for (var j = 0; j < index_size; j++) {
-        if (card_index[j] >= (terms)) {
-            content = Array.from(rev_match_map.values())[card_index[j] - terms];
-            if (content != undefined) {
-                content = content[1];
-            }
-        } else {
-            content = Array.from(match_map.keys())[card_index[j]];
-        }
-        if (content != null) {
-            matching_table += "<div class='active'>" + content + "</div>";
-        } else {
-            matching_table += "<div></div>"
-        }
-    }
-    matching_table += "</div>"
-
-    var game_setup_record = game_holder.innerHTML;
-    game_holder.innerHTML = matching_table;
-
-    setCardWidthAndHeight(".matching_game div", "--matching_max_width", "--matching_height", 22, 0);
-    addMatchingListeners(match_map, rev_match_map, game_holder, game_setup_record);
-}
-
-function parseGameString(game_holder, game_type) {
-
-    var game_items = game_holder.innerHTML.trim().split(",");
-    var match_map = new Map();
-
-    if (game_type === "matching") {
-        var rev_match_map = new Map();
-    } else if (game_type === "catagorize") {
-        var categories = new Set();
-    }
-
-    for (var ii = 0; ii < game_items.length; ii++) {
-        var match_content1 = game_items[ii].split("/")[0].split("-")[0];
-        var match_content_extra1 = game_items[ii].split("/")[0].split("-")[1];
-        var match_content2 = game_items[ii].split("/")[1].split("-")[0];
-        var match_content_extra2 = game_items[ii].split("/")[1].split("-")[1];
-
-        if (game_type === "matching") {
-            if (game_holder.classList.contains("color")) {
-                var match_content_color = match_content2;
-                var colors = match_content_extra2.split("#");
-                if (colors.length == 2) {
-                    match_content_color += drawSVGCircle(15, 10, 8, "gray", 1, colors[1]);
-                } else {
-                    match_content_color += drawSVGCircle(15, 5, 5, "gray", 0.25, colors[1]);
-                    match_content_color += drawSVGCircle(9, 15, 5, "gray", 0.25, colors[2]);
-                    match_content_color += drawSVGCircle(21, 15, 5, "gray", 0.25, colors[3]);
-                }
-            }
-            match_map.set(match_content1, [match_content2, match_content_color]);
-            rev_match_map.set(match_content2, [match_content1, match_content_color]);
-
-        } else if (game_type === "catagorize") {
-            match_map.set(match_content1, [match_content2, match_content_extra2]);
-            categories.add(match_content2);
-
-        }
-    }
-
-    if (game_type === "matching") {
-        return [match_map, rev_match_map];
-    } else if (game_type === "catagorize") {
-        return [match_map, categories];
-    }
-}
-
-function setupCatagorizingGame(game_holder, input) {
-    var match_map = input[0];
-    var categories = input[1];
-
-    var game_html = "<div class='catagorizing_game'>" + "<div class='matching_table'>";
-
-    for (var j = 0; j < match_map.size; j++) {
-        game_html += "<div class='active' data-target='" + match_map.get(Array.from(match_map.keys())[j]).toString().split(",")[0] + "'>" +
-            Array.from(match_map.keys())[j] + "</div>";
-    }
-    game_html += "</div>";
-    game_html += "<div class='spacer'></div>";
-    game_html += "<div class='categories_table' id='mydiv'>";
-    for (var i = 0; i < categories.size; i++) {
-        game_html += "<div class='active'>" + Array.from(categories.keys())[i] + "</div>";
-    }
-    game_html += "</div>";
-
-    var game_setup_record = game_holder.innerHTML;
-    game_holder.innerHTML = game_html;
-
-    setCardWidthAndHeight(".matching_table div", "--catagorizing_max_width", "--catagorizing_height", 0, 0);
-    addCatagorizingListeners(match_map, categories, game_holder, game_setup_record);
-}
-
-function addCatagorizingListeners(match_map, categories, game_holder, game_setup_record) {
-
-    var tds = document.querySelector("div.matching_table").querySelectorAll("div");
-
+function addCatagorizingListeners(game_holder, num, game_setup_record) {
+    var game_id = "game" + num;
+    var game_table = document.querySelector("#" + game_id + " div.matching_table");
+    var tds = game_table.querySelectorAll("div");
+    var drag = false;
     for (var i = 0; i < tds.length; i++) {
         dragElement(tds[i]);
-        tds[i].addEventListener("click", checkPosition.bind(null, event, "categories_table"));
+
+        tds[i].addEventListener("mouseup", checkPosition.bind(null, event, "categories_table"));
+        if (game_holder.getAttribute("data-flip")) {
+            tds[i].addEventListener("mouseup", function () {
+                if (drag == false) {
+                    var ele = event.target;
+                    var flip_cat = game_holder.getAttribute("data-flip");
+                    if (ele.innerHTML === ele.getAttribute("data-" + flip_cat)) {
+                        ele.innerHTML = ele.getAttribute("data-source");
+                    } else {
+                        ele.innerHTML = ele.getAttribute("data-" + flip_cat);
+                    }
+                }
+            });
+        }
+        tds[i].addEventListener("mousedown", function () {
+            drag = false;
+        });
+        tds[i].addEventListener("mousemove", function () {
+            drag = true;
+        });
     }
+
+    game_table.addEventListener("mouseup", function () {
+        var tds = game_table.querySelectorAll("div");
+        var empty_tds = game_table.querySelectorAll("#" + game_id + " div.correct");
+        if (empty_tds.length == tds.length) {
+            game_holder.innerHTML = game_setup_record;
+            setupGame(game_holder, num, parseGameString(game_holder));
+        }
+    });
 }
 //https://stackoverflow.com/questions/3680429/click-through-div-to-underlying-elements
 
-function buildGame() {
-    var game_holders = document.getElementsByClassName("game");
-    var output;
 
-    for (var i = 0; i < game_holders.length; i++) {
-        if (game_holders[i].classList.contains("matching")) {
-            output = parseGameString(game_holders[i], "matching");
-            setupMatchingGame(game_holders[i], output);
-        } else if (game_holders[i].classList.contains("catagorize")) {
-            output = parseGameString(game_holders[i], "catagorize");
-            setupCatagorizingGame(game_holders[i], output);
+function setupGame(game_holder, num, input) {
+    var game_html;
+    var game_id = "game" + num;
+    shuffleArray(input);
+
+    if (game_holder.classList.contains("catagorize")) {
+
+        var source_cat = game_holder.dataset.source;
+        var target_cat = game_holder.dataset.target;
+        var categories = new Set();
+
+        game_html = "<div id='" + game_id + "' class='catagorizing_game'>" + "<div class='matching_table'>";
+
+        input.forEach(function (obj) {
+            game_html += "<div class='catagorize active' data-target='" + obj[target_cat] + "'";
+            game_html += "data-source='" + obj[source_cat] + "'";
+            Object.keys(obj).forEach(function (key) {
+                game_html += "data-" + key + "='" + obj[key] + "'";
+            });
+
+            game_html += ">" + obj[source_cat] + "</div>";
+            categories.add(obj[target_cat]);
+        });
+
+        game_html += "</div><div class='spacer'></div>";
+        game_html += "<div class='categories_table' id='mydiv'>";
+
+        categories.forEach(function (match_cat) {
+            game_html += "<div class='active'>" + match_cat + "</div>";
+        });
+
+        var game_setup_record = game_holder.innerHTML;
+        game_holder.innerHTML = game_html;
+
+        var width_height = findCardWidthAndHeight("#" + game_id + " .matching_table div", 25, 0, game_holder.getAttribute("data-flip"));
+        document.querySelectorAll("#" + game_id + " .matching_table div").forEach(function (match_div) {
+            match_div.width = width_height[0];
+            match_div.height = width_height[1];
+        });
+        addCatagorizingListeners(game_holder, num, game_setup_record);
+
+    } else if (game_holder.classList.contains("matching")) {
+
+        var side1 = [game_holder.dataset.match.split("-")[0]];
+        var side2 = [game_holder.dataset.match.split("-")[1]];
+        var sides = [side1, side2];
+        if (game_holder.getAttribute("data-display_extra")) {
+            if (game_holder.dataset.display_extra.split("-")[0] === side1[0]) {
+                side1.push(game_holder.dataset.display_extra.split("-")[1]);
+            } else if (game_holder.dataset.display_extra.split("-")[0] === side2[0]) {
+                side2.push(game_holder.dataset.display_extra.split("-")[1]);
+            }
         }
-    }
 
+        var num_matching_divs = input.length * 2;
+        var square_size = nearest_sq(num_matching_divs);
+
+        game_html = "<div id='" + game_id + "'  class='matching_game'>";
+        var content = Array.from({
+            length: square_size - (num_matching_divs)
+        }, () => "<div class='matching_spacer'></div>");
+
+        input.forEach(function (obj) {
+            var match_div;
+            for (var j = 0; j < sides.length; j++) {
+                match_div = "data-target='" + obj[sides[j == 0 ? 1 : 0][0]] + "'";
+                match_div += " data-source='" + obj[sides[j][0]] + "'>";
+                for (var i = 0; i < sides[j].length; i++) {
+                    match_div += obj[sides[j][i]];
+                }
+                content.push("<div class='matching active' " + match_div + "</div>");
+            }
+        });
+        shuffleArray(content);
+
+        var row_index = Math.sqrt(square_size);
+        game_html += "<div class='game_row'>";
+        for (var j = 0; j < content.length; j++) {
+            game_html += content[j];
+            if ((j + 1) % row_index == 0) {
+                game_html += "</div><div class='game_row'>";
+            }
+        }
+        game_html += "</div></div>";
+
+        var game_setup_record = game_holder.innerHTML;
+        game_holder.innerHTML = game_html;
+
+        var width_height = findCardWidthAndHeight("#" + game_id + " div.game_row div", 20, 0);
+
+        document.querySelectorAll("#" + game_id + " div.game_row div").forEach(function (match_div) {
+            match_div.style.width = width_height[0];
+            match_div.style.height = width_height[1];
+        });
+        addMatchingListeners(game_holder, num, game_setup_record, num_matching_divs);
+    }
 }
 
-//dragElement(document.getElementById("mydiv"));
 
-// drag element functions 
-// from https://www.w3schools.com/howto/howto_js_draggable.asp
+function parseGameString(game_holder) {
 
-function dragElement(elmnt) {
-    var pos1 = 0,
-        pos2 = 0,
-        pos3 = 0,
-        pos4 = 0;
-    var top = 0,
-        left = 0;
+    var game_items = JSON.parse(game_holder.innerHTML, function (key, value) {
+        if (key === "color") {
+            var color_text;
+            if (value.length === 3) {
+                color_text = drawSVGCircle(15, 5, 5, "gray", 0.25, value[0]);
+                color_text += drawSVGCircle(9, 15, 5, "gray", 0.25, value[1]);
+                color_text += drawSVGCircle(21, 15, 5, "gray", 0.25, value[2]);
+                value = color_text;
+            } else {
+                color_text = drawSVGCircle(15, 10, 8, "gray", 1, value);
+                value = " " + color_text;
+            }
+        }
+        return value;
+    });
+    return game_items;
+}
 
-    elmnt.onmousedown = dragMouseDown;
+function buildGame() {
+    var game_holders = document.getElementsByClassName("game");
 
-    function dragMouseDown(e) {
-
-        e = e || window.event;
-        e.preventDefault();
-        // get the mouse cursor position at startup:
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-
-        document.onmouseup = closeDragElement;
-        // call a function whenever the cursor moves:
-        document.onmousemove = elementDrag;
-    }
-
-    function elementDrag(e) {
-        e = e || window.event;
-        e.preventDefault();
-        // calculate the new cursor position:
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        top = top - pos2;
-        left = left - pos1;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        elmnt.style.top = top + "px";
-        elmnt.style.left = left + "px";
-
-    }
-
-    function closeDragElement() {
-        // stop moving when mouse button is released:
-        document.onmouseup = null;
-        document.onmousemove = null;
+    for (var i = 0; i < game_holders.length; i++) {
+        setupGame(game_holders[i], i, parseGameString(game_holders[i]));
     }
 }
