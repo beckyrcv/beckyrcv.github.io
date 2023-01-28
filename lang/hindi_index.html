@@ -19,17 +19,8 @@
      <!--      load game css -->
      <link href="game_style.css" rel="stylesheet" type="text/css" />
 
-     <!--      build page sections -->
-     <!--
-     <script>
-         // load navigation bar
-         $(function() {
-             $("#nav_div").load("../assets/branchnav.html");
-             $("#sidenav_div").load("../assets/branchsidebar.html");
-         });
-
-     </script>
--->
+     <!--      load dom purify -->
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.3/purify.min.js"></script>
 
  </head>
 
@@ -49,20 +40,68 @@
 
          <div class="main_index_main">
              <div class="box_holder">
+                 <div class="box" style="flex-basis: 100%">
+                     <h2>Typing Game</h2>
+                     <p>Type in the correct form.</p>
+                     <div class="game typing construction" data-source="hindi" data-target="form">[
+                         {"hindi":"खाना", "form":"perfect", "word-type":"verb"},
+                         {"hindi":"जाना", "form":"perfect", "word-type":"verb"}
+                         ]
+                     </div>
+                 </div>
+                 <div class="box construction" style="flex-basis: 100%">
+                     <h2>Postposition Matching Game</h2>
+                     <p>Drag the postposition to a matching position on the image.</p>
+                     <div class="game location_matching" data-source="hindi" data-target="location" data-background-img="img/table_sketch.png" data-imgwidth="200px" data-imgheight="100px">[{"hindi":"के ऊपर", "english":"above, on, on top of","location":"90, 30"},
+                         {"hindi":"के नीचे", "english":"under, beneath, below", "location":"90,80"}]
+                     </div>
+                 </div>
                  <div class="box" style="flex-basis: 0">
                      <h2>Becky's Hindi Resources</h2>
-                     <p>As I've been learning Hindi I have created some resources to share with other learners.</p>
+                     <p>As I've been learning Hindi, I have created some resources to share with other learners! This page is still under active development! So far, these work best on a computer, but I am working on getting phone versions ready as well.</p>
                  </div>
                  <div class="box">
+                     <h2>Verb Matching Game</h2>
+                     <p>Drag the verb form to a matching pronoun.</p>
+                     <div class="game verb_matching" data-verb="करना" data-tense="future indicative" data-source="verb" data-target="pronoun" data-gender="true">[{"pronoun":"मैं(m)", "verb":"करूँगा"},
+                         {"pronoun":"मैं(f)", "verb":"करूँगी"},
+                         {"pronoun":"तू(m)", "verb":"करेगा"},
+                         {"pronoun":"तू(f)", "verb":"करेगी"},
+                         {"pronoun":"तुम(m)", "verb":"करोगे"},
+                         {"pronoun":"तुम(f)", "verb":"करोगी"},
+                         {"pronoun":"आप(m)", "verb":"करेंगे"},
+                         {"pronoun":"आप(f)", "verb":"करेंगी"},
+                         {"pronoun":"यह(m)", "verb":"करेगा"},
+                         {"pronoun":"यह(f)", "verb":"करेगी"},
+                         {"pronoun":"वह(m)", "verb":"करेगा"},
+                         {"pronoun":"वह(f)", "verb":"करेगी"},
+                         {"pronoun":"हम(m)", "verb":"करेंगे"},
+                         {"pronoun":"हम(f)", "verb":"करेंगी"},
+                         {"pronoun":"ये(m)", "verb":"करेंगे"},
+                         {"pronoun":"ये(f)", "verb":"करेंगी"},
+                         {"pronoun":"वे(m)", "verb":"करेंगे"},
+                         {"pronoun":"वे(f)", "verb":"करेंगी"}]</div>
+                 </div>
+                 <div class="box">
+                     <h2>Verb Matching Game</h2>
+                     <p>Drag the verb form to a matching pronoun.</p>
+                     <div class="game verb_matching" data-verb="होना" data-tense="present indicative" data-source="verb" data-target="pronoun">[{"pronoun":"मैं", "verb":"हूँ"}, {"pronoun":"तू", "verb":"है"}, {"pronoun":"तुम", "verb":"हो"}, {"pronoun":"यह", "verb":"है"}, {"pronoun":"वह", "verb":"है"}, {"pronoun":"हम", "verb":"हैं"}, {"pronoun":"ये", "verb":"हैं"}, {"pronoun":"वे", "verb":"हैं"}, {"pronoun":"आप", "verb":"हैं"}]</div>
+                 </div>
+
+
+                 <div class="box">
                      <h2>Color Matching Game</h2>
-                     <p>Select the matching color words in Hindi and English.</p>
+                     <p>Select the matching pairs of Hindi and English color words.</p>
+
                      <div class="game matching" data-match="hindi-english" data-display_extra="english-color">[{"hindi":"रंग", "english":"color", "color":["#FFA500", "#808080", "#008000"]}, {"hindi":"सफेद", "english":"white", "color":"#FFFFFF"}, {"hindi":"पीला", "english":"yellow", "color":"#FFFF00"}, {"hindi":"हरा", "english":"green", "color":"#008000"}, {"hindi":"स्लेटी", "english":"grey", "color":"#808080"}, {"hindi":"भूरा", "english":"brown", "color":"#A52A2A"}, {"hindi":"संतरा", "english":"orange", "color":"#FFA500"}, {"hindi":"केसरिया", "english":"safron", "color":"#F4C430"}, {"hindi":"गेरुआ", "english":"ochre", "color":"#CC7722"}, {"hindi":"काला", "english":"black", "color":"#000000"}, {"hindi":"जामुनी", "english":"purple", "color":"#800080"}, {"hindi":"गुलाबी", "english":"pink", "color":"#FFC0CB"}, {"hindi":"लाल", "english":"red", "color":"#FF0000"}, {"hindi":"भदमैला", "english":"beige", "color":"#F5F5DC"}, {"hindi":"हल्का", "english":"light", "color":["#F5F5DC", "#FFC0CB", "#FFFFFF"]}, {"hindi":"गहरा", "english":"dark", "color":["#808080", "#000000", "#A52A2A"]}, {"hindi":"नीला", "english":"blue", "color":"#0000FF"}]</div>
                  </div>
+
                  <div class="box">
                      <h2>Grammatical Gender Guessing Game</h2>
                      <p>Match the word to the correct grammatical gender. Click to toggle between Hindi and English.</p>
                      <div class="game catagorize" data-source="hindi" data-target="gender" data-flip="english">[{"hindi":"रंग", "gender":"M", "english":"color"}, {"hindi":"घर", "gender":"M", "english":"home"}, {"hindi":"काग़ज़", "gender":"M", "english":"paper"}, {"hindi":"फल", "gender":"M", "english":"fruit"}, {"hindi":"शहर", "gender":"M", "english":"city"}, {"hindi":"जानवर", "gender":"M", "english":"animal"}, {"hindi":"आदमी", "gender":"M", "english":"man"}, {"hindi":"किताब", "gender":"F", "english":"book"}, {"hindi":"मे़ज़", "gender":"F", "english":"table"}, {"hindi":"औरत", "gender":"F", "english":"woman"}, {"hindi":"भाषा", "gender":"F", "english":"language"}, {"hindi":"माता", "gender":"F", "english":"mother"}]</div>
                  </div>
+
 
                  <div class="box" style="flex-basis: 0">
                      <h2>Useful Hindi Words</h2>
@@ -131,7 +170,7 @@
                              बहरहाल:by the way (used to change topic)</p>
                      </details>
                  </div>
-                 <div class="box">
+                 <div class="box construction">
                      <h2>Hindi Grammer Overview</h2>
                      <div class="box_holder col">
                          <div class="box">
@@ -154,14 +193,6 @@
                          </div>
                      </div>
                  </div>
-                 <!--
-                 <div class="box">
-                     <h2>Word Matching Game</h2>
-                     <p>Select the matching words in Hindi and English.</p>
-                     <div class="game matching" data-match="hindi-english">[{"hindi":"रंग", "gender":"M", "english":"color"}, {"hindi":"घर", "gender":"M", "english":"home"}, {"hindi":"काग़ज़", "gender":"M", "english":"paper"}, {"hindi":"फल", "gender":"M", "english":"fruit"}, {"hindi":"शहर", "gender":"M", "english":"city"}, {"hindi":"जानवर", "gender":"M", "english":"animal"}, {"hindi":"आदमी", "gender":"M", "english":"man"}, {"hindi":"किताब", "gender":"F", "english":"book"}, {"hindi":"मे़ज़", "gender":"F", "english":"table"}, {"hindi":"औरत", "gender":"F", "english":"woman"}, {"hindi":"भाषा", "gender":"F", "english":"language"}, {"hindi":"माता", "gender":"F", "english":"mother"}]</div>
-                 </div>
-                 <div class="closing_box"></div>
--->
              </div>
          </div>
      </div>
@@ -179,6 +210,7 @@
      </script>
      <!--      load game script -->
      <script src="games.js"></script>
+     <script src="hindi_word_forms.js"></script>
      <script type="text/javascript">
          buildGame();
 

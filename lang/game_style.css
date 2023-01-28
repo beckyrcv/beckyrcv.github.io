@@ -5,13 +5,11 @@
     --catagorizing_height: 20px;
 }
 
-div.matching_game,
-div.catagorizing_game {
+div.game_holder_div {
     border: 1px solid black;
 }
 
-div.matching_game,
-div.catagorizing_game,
+div.game_holder_div,
 div.matching_table {
     display: flex;
     flex-wrap: wrap;
@@ -32,15 +30,29 @@ div.catagorizing_game div.matching_table div {
     position: relative;
 }
 
-div.game_row {
+div.pronoun_holder {
     display: flex;
     flex-basis: 100%;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
+}
+
+div.pronoun_col div {
+    flex-basis: 100%;
+    flex-grow: 1;
+}
+
+div.game_row,
+div.verb_matching_holder {
+    display: flex;
+    flex-basis: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 div.matching_game div.matching,
 div.matching_game div.matching_spacer,
+div.verb_matching_game div.verb_matching_spacer,
 div.catagorizing_game div.matching_table div,
 div.categories_table div {
     padding: 0.5em;
@@ -55,12 +67,23 @@ div.matching_game div.matching svg {
     position: absolute;
 }
 
-div.matching_game div.matching.active,
-div.catagorizing_game div.matching_table div,
-div.categories_table div {
+div.verb_matching_holder {
+    flex-basis: 100px;
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+div.active {
+    padding: 0.5em;
+    margin: 0.05em;
     box-shadow: inset 0 0 0 1px #f8a100;
 }
 
+div.verb_matching_target {
+    min-width: 4em;
+    border: 0.2em dashed lightgray;
+    box-shadow: none;
+}
 
 div.matching.match_selected {
     background-color: #f8a100;
@@ -84,6 +107,40 @@ div.categories_table div {
     height: 2em;
     text-align: center;
     border: 1em solid transparent;
+}
+
+div.full_row_spacer,
+div.small_row_spacer {
+    height: 2.5em;
+    margin-top: 0.59px;
+    width: 100%;
+    flex-shrink: 0;
+    border: none;
+}
+
+div.game div.verb_matching,
+div.game div.locate {
+    position: relative;
+    background-color: white;
+}
+
+div.game div.verb_matching.correct {
+    position: relative;
+    background-color: greenyellow;
+}
+
+div.location_matching_game svg {
+    z-index: 3;
+    position: absolute;
+}
+
+div.location_matching_game svg.intersect {
+    opacity: 0.8;
+    background-color: aliceblue;
+}
+
+div.small_row_spacer {
+    height: 1em;
 }
 
 div.spacer {

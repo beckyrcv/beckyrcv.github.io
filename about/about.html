@@ -32,14 +32,15 @@
          <!--      Main page content! --->
          <div class="main_index_main">
              <div class="box_holder">
-                 <div class="box" style="flex-basis: content;flex-grow: 0;
-	flex-shrink: 0;">
+                 <div class="box" style="flex-basis: content;flex-grow: 0;flex-shrink: 0;">
                      <h2>CV</h2>
-                     <p>Link to CV here</p>
-                     <div class="img_holder"><img src="../assets/download-pdf-icon.svg" width="60px"></div>
+                     <p>View my CV here:</p>
+                     <div class="img_holder"><a href="../files/Vandewalle_CV_1-23-2023.pdf" title="Vandewalle CV"><img src="../assets/download-pdf-icon.svg" width="60px"></a></div>
+                     <!--
                      <h2>Resume</h2>
                      <p>Link to Resume here</p>
                      <div class="img_holder"><img src="../assets/download-pdf-icon.svg" width="60px"></div>
+-->
                  </div>
                  <div class="box" style="flex-basis: min-content;flex-grow: 1;">
                      <h2>About</h2>
@@ -48,59 +49,95 @@
 
                  <div class="box" style="flex-basis: 1;">
                      <h2>Education</h2>
-                     <table>
+                     <table class="education">
                          <tr>
-                             <td rowspan="2">image</td>
-                             <td>PhD (Geography and Geographic Information Science, expected)</td>
+                             <td>
+                                 <table>
+                                     <tr>
+                                         <td><img src="../img/UIUC.png"></td>
+                                         <td>PhD (Geography and Geographic Information Science, expected)<br><a href="https://illinois.edu/" target="_blank" rel="noopener noreferrer">University of Illinois Urbana-Champaign</a>
+                                         </td>
+                                     </tr>
+                                     <tr>
+                                         <td colspan="2">
+                                             <a href="https://ggis.illinois.edu/" target="_blank" rel="noopener noreferrer">Department of Geography &amp; Geographic Information Science</a> | <a href="https://ggis.illinois.edu/directory/profile/rcv3">GGIS Profile</a>
+                                             <br><a href="https://cybergis.illinois.edu/" target="_blank" rel="noopener noreferrer">CyberGIS Center for Advanced Digital and Spatial Studies</a>
+                                             <br><a href="https://cigi.illinois.edu/" target="_blank" rel="noopener noreferrer">CyberInfrastructure &amp; Geospatial Information Laboratory</a>
+                                         </td>
+                                     </tr>
+                                 </table>
+                             </td>
                          </tr>
                          <tr>
-                             <td>University of Illinois Urbana-Champaign</td>
-                         </tr>
-
-                         <tr>
-                             <td rowspan="2">image</td>
-                             <td>M.Sc. (Geographic Information Science and Archaeology, 2015)</td>
-                         </tr>
-                         <tr>
-                             <td>The University of Edinburgh</td>
-                         </tr>
-
-                         <tr>
-                             <td rowspan="2">image</td>
-                             <td>Post Baccalaureate Certificate (Classics, 2014)</td>
-                         </tr>
-                         <tr>
-                             <td>University of Pennsylvania</td>
-                         </tr>
-
-                         <tr>
-                             <td rowspan="2">image</td>
-                             <td>B.A. (Greek and Roman Studies, 2012)</td>
+                             <td>
+                                 <table>
+                                     <tr>
+                                         <td><img src="../img/Edinburg.png"></td>
+                                         <td>MSc (Geographic Information Science and Archaeology, 2015) <br><a href="https://www.ed.ac.uk/" target="_blank" rel="noopener noreferrer">The University of Edinburgh</a></td>
+                                     </tr>
+                                     <tr>
+                                         <td colspan="2">
+                                             <a href="https://www.ed.ac.uk/geosciences/" target="_blank" rel="noopener noreferrer">School of Geosciences</a>
+                                             <br><span>Note: The MSc in GIS &amp; Archaeology is no longer awarded</span>
+                                         </td>
+                                     </tr>
+                                 </table>
+                             </td>
                          </tr>
                          <tr>
-                             <td>Rhodes College</td>
+                             <td>
+                                 <table>
+                                     <tr>
+                                         <td><img src="../img/Penn.png"></td>
+                                         <td>Post Baccalaureate Certificate (Classics, 2014)<br><a href="https://www.upenn.edu/" target="_blank" rel="noopener noreferrer">University of Pennsylvania</a></td>
+                                     </tr>
+                                     <tr>
+                                         <td colspan="2">
+                                             <a href="https://www.classics.upenn.edu/" target="_blank" rel="noopener noreferrer">Department of Classical Studies</a>
+                                         </td>
+                                     </tr>
+                                 </table>
+                             </td>
                          </tr>
-
                          <tr>
-                             <td rowspan="2">image</td>
-                             <td>High School Diploma (2008)</td>
+                             <td>
+                                 <table>
+                                     <tr>
+                                         <td><img src="../img/Rhodes.png"></td>
+                                         <td>BA (Greek and Roman Studies, 2012)<br><a href="https://www.rhodes.edu/" target="_blank" rel="noopener noreferrer">Rhodes College</a></td>
+                                     </tr>
+                                     <tr>
+                                         <td colspan="2">
+                                             <a href="https://www.rhodes.edu/academics/majors-minors/ancient-mediterranean-studies" target="_blank" rel="noopener noreferrer">Department of Ancient Mediterranean Studies</a>
+                                             <br><span>Note: The Department of Ancient Mediterranean Studies was formerly known as the Department of Greek and Roman Studies</span>
+                                         </td>
+                                     </tr>
+                                 </table>
+                             </td>
                          </tr>
                          <tr>
-                             <td>Oak Hills High School</td>
+                             <td>
+                                 <table>
+                                     <tr>
+                                         <td><img src="../img/OakHills.png"></td>
+                                         <td>High School Diploma (2008)<br><a href="https://www.ohlsd.us/oak-hills-high-school/" target="_blank" rel="noopener noreferrer">Oak Hills High School</a></td>
+                                     </tr>
+                                 </table>
+                             </td>
                          </tr>
                      </table>
                  </div>
 
-                 <div class="box" style="flex-basis: fit-content;">
+                 <div class="box construction" style="flex-basis: fit-content;">
                      <h2>Music</h2>
                      <p>In my free time I frequently play in university and community bands.</p>
                  </div>
 
-                 <div class="box" style="flex-basis: fit-content;">
+                 <div class="box construction" style="flex-basis: fit-content;">
                      <h2>Languages</h2>
                      <p>I have a strong interest in study languages and am especially excited to learn new elements of grammer and syntax.</p>
                  </div>
-                 <div class="box">
+                 <div class="box construction">
                      <h2>Art</h2>
                      <p>I am not afraid to get my hands dirty when it comes to any type of art! I frequently paint and work on small scale glass work when the weather permits. I'm also a fan of digital art and have extensive experience with Adobe Illustrator and Photoshop.</p>
                  </div>
