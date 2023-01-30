@@ -1,0 +1,157 @@
+ <!DOCTYPE html>
+ <html>
+
+ <head>
+     <title>Vandewalle | Hindi</title>
+
+     <!--      load primary css -->
+     <link href="../assets/style.css" rel="stylesheet" type="text/css" />
+
+     <!--      load language page css -->
+     <link href="lang_style.css" rel="stylesheet" type="text/css" />
+
+     <!--      load jquery (used to build repeating site sections) -->
+     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+
+     <!--      load icon set -->
+     <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
+
+     <!--      load game css -->
+     <link href="game_style.css" rel="stylesheet" type="text/css" />
+
+     <!--      load dom purify -->
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.3/purify.min.js"></script>
+
+ </head>
+
+ <body>
+     <!--      Top site elements --->
+     <div class="top_bar"></div>
+     <hr class="top_hr">
+     <div class="top_sub_bar"></div>
+
+     <!--      Add the navigation menu -->
+     <div id="nav_div"></div>
+
+     <div class="page_body">
+
+         <!--      Add the sidebar --->
+         <div id="sidenav_div" class="sidenav"></div>
+
+         <div class="main_index_main">
+             <div class="box_holder">
+
+                 <div class="box">
+                     <font size="+2">
+                         <form onsubmit='parseMee();return false'>
+                             <select type='text' id='verb_choice' list='verbs'>
+                                 <!--                         <input type='text' id='verb_choice' list='verbs' />-->
+                                 <datalist id='verbs'>
+                                     <option>होना</option>
+                                     <option>खाना</option>
+                                     <option>लेना</option>
+                                     <option>देना</option>
+                                     <option>जाना</option>
+                                     <option>पिना</option>
+                                     <option>करना</option>
+                                 </datalist>
+                             </select>
+
+                             <select type='text' id='tense_choice' list='tenses'>
+                                 <datalist id='tenses'>
+                                     <option>present habitual</option>
+                                     <option>simple present</option>
+                                     <option>simple past</option>
+                                     <option>imperative</option>
+                                     <option>present progressive</option>
+                                     <option>past habitual</option>
+                                     <option>past progressive</option>
+                                     <option>future</option>
+                                     <option>perfect</option>
+                                     <option>perfect</option>
+                                 </datalist>
+                             </select>
+                             <input type='submit' />
+                         </form>
+                         <table id='verb_choice_out'>
+                             <tr>
+                                 <td>मैं</td>
+                                 <td>m</td>
+                                 <td class="parseme" data-person="1st" data-number="singular" data-gender="masculine"></td>
+                                 <td>f</td>
+                                 <td class="parseme" data-person="1st" data-number="singular" data-gender="feminine"></td>
+                                 <td>हम</td>
+                                 <td>m</td>
+                                 <td class="parseme" data-person="1st" data-number="plural" data-gender="masculine"></td>
+                                 <td>f</td>
+                                 <td class="parseme" data-person="1st" data-number="plural" data-gender="feminine"></td>
+                             </tr>
+                             <tr>
+                                 <td rowspan=2>तू</td>
+                                 <td rowspan=2>m</td>
+                                 <td rowspan=2 class="parseme" data-person="2nd" data-number="singular" data-gender="masculine"></td>
+                                 <td rowspan=2>f</td>
+                                 <td rowspan=2 class="parseme" data-person="2nd" data-number="singular" data-gender="feminine"></td>
+                                 <td>तुम</td>
+                                 <td>m</td>
+                                 <td class="parseme" data-person="2nd" data-number="plural" data-formality="familar" data-gender="masculine"></td>
+                                 <td>f</td>
+                                 <td class="parseme" data-person="2nd" data-number="plural" data-formality="familar" data-gender="feminine"></td>
+                             </tr>
+                             <tr>
+                                 <td>आप</td>
+                                 <td>m</td>
+                                 <td class="parseme" data-person="2nd" data-number="plural" data-formality="formal" data-gender="masculine"></td>
+                                 <td>f</td>
+                                 <td class="parseme" data-person="2nd" data-number="plural" data-formality="formal" data-gender="feminine"></td>
+                             </tr>
+                             <tr>
+                                 <td>यह</td>
+                                 <td>m</td>
+                                 <td class="parseme" data-person="3rd" data-number="singular" data-distance="near" data-gender="masculine"></td>
+                                 <td>f</td>
+                                 <td class="parseme" data-person="3rd" data-number="singular" data-distance="near" data-gender="feminine"></td>
+                                 <td>ये</td>
+                                 <td>m</td>
+                                 <td class="parseme" data-person="3rd" data-number="plural" data-distance="near" data-gender="masculine"></td>
+                                 <td>f</td>
+                                 <td class="parseme" data-person="3rd" data-number="plural" data-distance="near" data-gender="feminine"></td>
+                             </tr>
+                             <tr>
+                                 <td>वह</td>
+                                 <td>m</td>
+                                 <td class="parseme" data-person="3rd" data-number="singular" data-distance="far" data-gender="masculine"></td>
+                                 <td>f</td>
+                                 <td class="parseme" data-person="3rd" data-number="singular" data-distance="far" data-gender="feminine"></td>
+                                 <td>वे</td>
+                                 <td>m</td>
+                                 <td class="parseme" data-person="3rd" data-number="plural" data-distance="far" data-gender="masculine"></td>
+                                 <td>f</td>
+                                 <td class="parseme" data-person="3rd" data-number="plural" data-distance="far" data-gender="feminine"></td>
+                             </tr>
+                         </table>
+                     </font>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+     <!--      Bottom site elements --->
+     <hr class="bottom_hr">
+     <div class="bottom_bar"></div>
+
+     <!--  Other Setup Scripts --->
+     <script type="text/javascript" src="../assets/features.js"></script>
+     <script type="text/javascript">
+         loadBars("child");
+
+     </script>
+     <!--      load game script -->
+     <script src="games.js"></script>
+     <script src="hindi_word_forms.js"></script>
+     <script type="text/javascript">
+
+     </script>
+ </body>
+
+ </html>

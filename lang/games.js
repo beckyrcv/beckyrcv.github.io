@@ -563,10 +563,11 @@ function buildGame() {
 }
 
 function parse() {
-    var verb_div = document.getElementsByClassName("parse");
-    parse_me(verb_div[0]);
+    var word_divs = document.getElementsByClassName("parse");
+    for (var i = 0; i < word_divs.length; i++) {
+        parse_me(word_divs[i]);
+    }
 }
-
 
 function parseGameString(game_holder) {
 
