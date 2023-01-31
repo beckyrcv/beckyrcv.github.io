@@ -1,6 +1,26 @@
 function parseMee() {
     var verb = document.getElementById("verb_choice").value;
+    var notes = document.getElementById("parse_verbs_form_notes");
+    notes.innerHTML = "";
+    if (verb === "") {
+        notes.innerHTML = "Enter or select a verb!";
+        notes.classList.add("text_updated");
+        setTimeout(function () {
+            var notes = document.getElementById("parse_verbs_form_notes");
+            notes.classList.remove("text_updated");
+        }, 600);
+        return false;
+    } else if (!(verb.slice(-2) === "ना")) {
+        notes.innerHTML = "Enter the infinitive verb form (must end with ना)!";
+        notes.classList.add("text_updated");
+        setTimeout(function () {
+            var notes = document.getElementById("parse_verbs_form_notes");
+            notes.classList.remove("text_updated");
+        }, 600);
+        return false;
+    }
     var tense = document.getElementById("tense_choice").value;
+
     var verb_out = document.getElementById("verb_choice_out");
     var pronoun_holders = document.getElementsByClassName("pronoun_holder");
     var person, number;
@@ -9,14 +29,14 @@ function parseMee() {
     var gender = "";
     var negative = "false";
     for (j = 0; j < pronoun_holders.length; j++) {
+        pronoun_holders[j].style.borderWidth = "1px";
         var text_holders = pronoun_holders[j].getElementsByTagName("div");
         var parse_holders = pronoun_holders[j].getElementsByClassName("parseme");
         var gender_holders = pronoun_holders[j].getElementsByClassName("gender_marker");
-        gender_holders[0].style.display = "inline-block";
-        gender_holders[1].style.display = "inline-block";
-        parse_holders[1].style.display = "inline-block";
+        var pronoun_word_holders = pronoun_holders[j].getElementsByClassName("pronoun_marker");
 
         for (i = 0; i < text_holders.length; i++) {
+            text_holders[i].style.display = "inline-block";
             if (text_holders[i].classList.contains("parseme")) {
                 person = text_holders[i].dataset.person;
                 number = text_holders[i].dataset.number;
@@ -43,28 +63,84 @@ function parseMee() {
                 }, 600);
             }
         }
-        if (parse_holders[0].innerHTML === parse_holders[1].innerHTML) {
+        if (parse_holders[0].innerHTML === "") {
+            pronoun_holders[j].style.borderWidth = "0px";
+            pronoun_word_holders[0].style.display = "none";
+            gender_holders[0].style.display = "none";
+            gender_holders[1].style.display = "none";
+            parse_holders[0].style.display = "none";
+            parse_holders[1].style.display = "none";
+        } else if (parse_holders[0].innerHTML === parse_holders[1].innerHTML) {
             gender_holders[0].style.display = "none";
             gender_holders[1].style.display = "none";
             parse_holders[1].style.display = "none";
         }
     }
+    updateJainRefs(tense);
     return false;
 }
-//
-//function linkSelectors() {
-//    var verb = document.getElementById("verb_choice").value;
-//    var tense = document.getElementById("tense_choice");
-//    var tense_options = tense.getElementsByTagName("option");
-//    tense.innerHTML = "";
-//    
-//    for (var i = 0; i < tense_options.length; i++) {
-//        if (verb === "होना") {
-//            tense.appendChild(tense_options[i]);
-//        }
-//    }
-//}
-//linkSelectors();
+
+function updateJainRefs(tense) {
+    var tense_map = new Map();
+    tense_map.set("simple present", [4, 38]);
+    tense_map.set("simple past", [16, 134]);
+    tense_map.set("present habitual", [9, 82]);
+    tense_map.set("present progressive", [12, 105]);
+    tense_map.set("past habitual", [17, 138]);
+    tense_map.set("past progressive", [18, 142]);
+    tense_map.set("future", [21, 157]);
+    tense_map.set("perfect", [23, 170]);
+    tense_map.set("imperative", [5, 52]);
+    var chapt = document.getElementsByClassName("jain_chap")[0];
+    var page = document.getElementsByClassName("jain_page")[0];
+    chapt.innerHTML = tense_map.get(tense)[0];
+    page.innerHTML = tense_map.get(tense)[1];
+}
+
+function linkSelectors() {
+    var verb = document.getElementById("verb_choice").value;
+    var tense = document.getElementById("tense_choice");
+    var tense_options_only_hona = new Array();
+    var tense_options_non_hona = new Array();
+    var tense_options_all = new Array();
+
+    tense_options_only_hona.push("simple present");
+    tense_options_only_hona.push("simple past");
+
+    tense_options_all.push("present habitual");
+    tense_options_all.push("present progressive");
+    tense_options_all.push("past habitual");
+    tense_options_all.push("past progressive");
+    tense_options_all.push("future");
+    tense_options_all.push("perfect");
+    tense_options_all.push("imperative");
+
+    tense.innerHTML = "";
+    var new_opt, new_text;
+    if (verb === "होना") {
+        for (var i = 0; i < tense_options_only_hona.length; i++) {
+            new_opt = document.createElement("option");
+            new_text = document.createTextNode(tense_options_only_hona[i]);
+            new_opt.appendChild(new_text);
+            tense.appendChild(new_opt);
+        }
+    } else {
+        for (var i = 0; i < tense_options_non_hona.length; i++) {
+            new_opt = document.createElement("option");
+            new_text = document.createTextNode(tense_options_non_hona[i]);
+            new_opt.appendChild(new_text);
+            tense.appendChild(new_opt);
+        }
+    }
+    for (var i = 0; i < tense_options_all.length; i++) {
+        new_opt = document.createElement("option");
+        new_text = document.createTextNode(tense_options_all[i]);
+        new_opt.appendChild(new_text);
+        tense.appendChild(new_opt);
+    }
+}
+linkSelectors();
+
 
 //function parse_me(word_div) {
 //    word_div.style.fontSize = "40px";
@@ -167,14 +243,12 @@ function returnForm({
 
     if (type === "verb") {
         if (word === "होना") {
-            if (tense === "present habitual") {
-                tense = "simple present";
+            if ((tense === "simple present") || (tense === "simple past")) {
+                return conjugateHona(person, number, gender, tense, formality, distance, negative);
+            } else {
+                return conjugateVerb(word, person, number, gender, tense, formality, distance, negative);
             }
-
-            return conjugateHona(person, number, gender, tense, formality, distance, negative);
-
         } else {
-
             return conjugateVerb(word, person, number, gender, tense, formality, distance, negative);
         }
 
@@ -191,6 +265,13 @@ function returnForm({
 
 function conjugateHona(person, number, gender, tense, formality, distance, negative) {
     //    console.log("hona args!!", person, number, gender, tense, formality, distance, negative);
+    if (formality === "neutral") {
+        if (!(tense === "imperative")) {
+            return "";
+        } else {
+            return "होना";
+        }
+    }
     if (tense === "simple present") {
         // chapter 4 page 38
         if (number === "singular") {
@@ -225,11 +306,16 @@ function conjugateHona(person, number, gender, tense, formality, distance, negat
 }
 
 function conjugateVerb(word, person, number, gender, tense, formality, distance, negative) {
-    console.log("verb args!!", word, person, number, gender, tense, formality, distance, negative);
+    //    console.log("verb args!!", word, person, number, gender, tense, formality, distance, negative);
     var verb_stem = word.replace("ना", "");
     var negative_addition = "";
     var hona_form = " ";
 
+    if (formality === "neutral") {
+        if (!(tense === "imperative")) {
+            return "";
+        }
+    }
     if (tense === "present habitual") {
         // chapter 9 page 82
         hona_form += conjugateHona(person, number, gender, "simple present", formality, distance);

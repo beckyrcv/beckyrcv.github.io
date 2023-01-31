@@ -51,6 +51,7 @@ strong {
     text-align: center;
     color: gray;
     border: none;
+    border-collapse: collapse;
 }
 
 #verb_choice_out td {

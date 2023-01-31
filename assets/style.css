@@ -32,7 +32,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: GrotleyRegular, sans-serif, monospace;
+    font-family: GrotleyRegular, Georgia, sans-serif, monospace;
     letter-spacing: 0.08em;
 }
 
@@ -51,17 +51,14 @@ h2 em,
 h3 em,
 h4 em,
 h5 em,
-h6 em {
-    font-family: GrotleyRegular, sans-serif, monospace;
-}
-
+h6 em,
 h1 i,
 h2 i,
 h3 i,
 h4 i,
 h5 i,
 h6 i {
-    font-family: GrotleyRegular, sans-serif, monospace;
+    font-family: GrotleyRegular, Georgia, sans-serif, monospace;
 }
 
 p {
@@ -79,15 +76,15 @@ strong {
 }
 
 ul#navlist li a {
-    font-family: GrotleyRegular, Optima, monospace;
+    font-family: GrotleyRegular, Georgia, Optima, monospace;
 }
 
 .sidenav .contact_link a {
-    font-family: GrotleyRegular, Optima, monospace;
+    font-family: GrotleyRegular, Georgia, Optima, monospace;
 }
 
 .sidenav .my_name {
-    font-family: GrotleyRegular, Optima, monospace;
+    font-family: GrotleyRegular, Georgia, Optima, monospace;
 }
 
 .sidenav a {
