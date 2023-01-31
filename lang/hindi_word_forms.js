@@ -2,32 +2,54 @@ function parseMee() {
     var verb = document.getElementById("verb_choice").value;
     var tense = document.getElementById("tense_choice").value;
     var verb_out = document.getElementById("verb_choice_out");
-    var text_holders = verb_out.getElementsByTagName("td");
-
-    console.log("parsing meee", verb_out);
+    var pronoun_holders = document.getElementsByClassName("pronoun_holder");
     var person, number;
     var distance = "";
     var formality = "";
     var gender = "";
-    for (i = 0; i < text_holders.length; i++) {
-        if (text_holders[i].classList.contains("parseme")) {
-            person = text_holders[i].dataset.person;
-            number = text_holders[i].dataset.number;
-            distance = text_holders[i].dataset.distance;
-            formality = text_holders[i].dataset.formality;
-            gender = text_holders[i].dataset.gender;
-            text_holders[i].textContent = returnForm({
-                word: verb,
-                type: "verb",
-                tense: tense,
-                person: person,
-                number: number,
-                distance: distance,
-                formality: formality,
-                gender: gender
-            });
+    var negative = "false";
+    for (j = 0; j < pronoun_holders.length; j++) {
+        var text_holders = pronoun_holders[j].getElementsByTagName("div");
+        var parse_holders = pronoun_holders[j].getElementsByClassName("parseme");
+        var gender_holders = pronoun_holders[j].getElementsByClassName("gender_marker");
+        gender_holders[0].style.display = "inline-block";
+        gender_holders[1].style.display = "inline-block";
+        parse_holders[1].style.display = "inline-block";
+
+        for (i = 0; i < text_holders.length; i++) {
+            if (text_holders[i].classList.contains("parseme")) {
+                person = text_holders[i].dataset.person;
+                number = text_holders[i].dataset.number;
+                distance = text_holders[i].dataset.distance;
+                formality = text_holders[i].dataset.formality;
+                gender = text_holders[i].dataset.gender;
+                text_holders[i].textContent = returnForm({
+                    word: verb,
+                    type: "verb",
+                    tense: tense,
+                    person: person,
+                    number: number,
+                    distance: distance,
+                    formality: formality,
+                    gender: gender,
+                    negative: negative
+                });
+                text_holders[i].classList.add("text_updated");
+                setTimeout(function () {
+                    var text_holders = document.getElementById("verb_choice_out").getElementsByTagName("div");
+                    for (i = 0; i < text_holders.length; i++) {
+                        text_holders[i].classList.remove("text_updated");
+                    }
+                }, 600);
+            }
+        }
+        if (parse_holders[0].innerHTML === parse_holders[1].innerHTML) {
+            gender_holders[0].style.display = "none";
+            gender_holders[1].style.display = "none";
+            parse_holders[1].style.display = "none";
         }
     }
+    return false;
 }
 //
 //function linkSelectors() {
@@ -44,25 +66,25 @@ function parseMee() {
 //}
 //linkSelectors();
 
-function parse_me(word_div) {
-    word_div.style.fontSize = "40px";
-    word_div.style.padding = "40px";
-    var input = JSON.parse(word_div.innerHTML);
-    var word = input.word;
-    var type = input.type;
-    var text = "<p>parsing!!!" + word + type + "<p>";
-    var output;
-    if (type === "verb") {
-        output = returnAllVerbForms({
-            "word": word,
-            "tense": "present habitual"
-        });
-    } else {
-        output = returnForm(input);
-    }
-
-    word_div.innerHTML = output;
-}
+//function parse_me(word_div) {
+//    word_div.style.fontSize = "40px";
+//    word_div.style.padding = "40px";
+//    var input = JSON.parse(word_div.innerHTML);
+//    var word = input.word;
+//    var type = input.type;
+//    var text = "<p>parsing!!!" + word + type + "<p>";
+//    var output;
+//    if (type === "verb") {
+//        output = returnAllVerbForms({
+//            "word": word,
+//            "tense": "present habitual"
+//        });
+//    } else {
+//        output = returnForm(input);
+//    }
+//
+//    word_div.innerHTML = output;
+//}
 
 var vowels_matras = new Map();
 var matras_vowels = new Map();
@@ -141,16 +163,18 @@ function returnForm({
     distance = "near",
     negative = "false"
 }) {
-    console.log("args!!", word, type, person, number, gender, form, tense, formality, distance);
+    //    console.log("args!!", word, type, person, number, gender, form, tense, formality, distance, negative);
 
     if (type === "verb") {
         if (word === "होना") {
             if (tense === "present habitual") {
                 tense = "simple present";
             }
+
             return conjugateHona(person, number, gender, tense, formality, distance, negative);
 
         } else {
+
             return conjugateVerb(word, person, number, gender, tense, formality, distance, negative);
         }
 
@@ -166,7 +190,7 @@ function returnForm({
 }
 
 function conjugateHona(person, number, gender, tense, formality, distance, negative) {
-    console.log("hona args!!", person, number, gender, tense, formality, distance, negative);
+    //    console.log("hona args!!", person, number, gender, tense, formality, distance, negative);
     if (tense === "simple present") {
         // chapter 4 page 38
         if (number === "singular") {
@@ -225,47 +249,50 @@ function conjugateVerb(word, person, number, gender, tense, formality, distance,
 
     } else if (tense === "imperative") {
         // chapter 5 page 52
+        //        console.log("imperative verb! args!!", word, person, number, gender, tense, formality, distance, negative);
 
-        var irregular_formal = new Map();
-        irregular_formal.add("लेना", "लीजिये");
-        irregular_formal.add("देना", "दीजिये");
-        irregular_formal.add("करना", "कीजिये");
-        irregular_formal.add("पीना", "पीजिये");
+        if (person === "2nd") {
+            var irregular_formal = new Map();
+            irregular_formal.set("लेना", "लीजिये");
+            irregular_formal.set("देना", "दीजिये");
+            irregular_formal.set("करना", "कीजिये");
+            irregular_formal.set("पीना", "पीजिये");
 
-        var irregular_familiar = new Map();
-        irregular_familiar.add("लेना", "लो");
-        irregular_familiar.add("देना", "दो");
+            var irregular_familiar = new Map();
+            irregular_familiar.set("लेना", "लो");
+            irregular_familiar.set("देना", "दो");
 
-        var formal_addition = "";
-        if (formality === "very formal") {
-            formal_addition = "गा";
-        }
-        if (negative === "true") {
-            if ((formality === "familiar") || (formality === "intimate")) {
-                negative_addition = "मत ";
-            } else {
-                negative_addition = "न ";
+            var formal_addition = "";
+            if (formality === "very formal") {
+                formal_addition = "गा";
             }
-        }
-        if (formality === "neutral") {
-            return negative_addition + word;
-        } else if (formality === "intimate") {
-            return negative_addition + verb_stem;
-        } else if (formality === "formal") {
-            if (irregular_formal.has(word)) {
-                return negative_addition + irregular_formal.get(word) + formal_addition;
-            } else if (lastLetter(verb_stem) === "ू") {
-                return negative_addition + addVowelSuffix(shortenStemVowel(verb_stem), "इये") + formal_addition;
-            } else {
-                return negative_addition + addVowelSuffix(verb_stem, "इये") + formal_addition;
+            if (negative === "true") {
+                if ((formality === "familiar") || (formality === "intimate")) {
+                    negative_addition = "मत ";
+                } else {
+                    negative_addition = "न ";
+                }
             }
-        } else if (formality === "familiar") {
-            if (irregular_familiar.has(word)) {
-                return negative_addition + irregular_familiar.get(word);
-            } else if ((lastLetter(verb_stem) === "ू") || (lastLetter(verb_stem) === "ी")) {
-                return negative_addition + addVowelSuffix(shortenStemVowel(verb_stem), "ओ");
-            } else {
-                return negative_addition + addVowelSuffix(verb_stem, "ओ");
+            if (formality === "neutral") {
+                return negative_addition + word;
+            } else if (formality === "intimate") {
+                return negative_addition + verb_stem;
+            } else if (formality === "formal") {
+                if (irregular_formal.has(word)) {
+                    return negative_addition + irregular_formal.get(word) + formal_addition;
+                } else if (lastLetter(verb_stem) === "ू") {
+                    return negative_addition + addVowelSuffix(shortenStemVowel(verb_stem), "इये") + formal_addition;
+                } else {
+                    return negative_addition + addVowelSuffix(verb_stem, "इये") + formal_addition;
+                }
+            } else if (formality === "familiar") {
+                if (irregular_familiar.has(word)) {
+                    return negative_addition + irregular_familiar.get(word);
+                } else if ((lastLetter(verb_stem) === "ू") || (lastLetter(verb_stem) === "ी")) {
+                    return negative_addition + addVowelSuffix(shortenStemVowel(verb_stem), "ओ");
+                } else {
+                    return negative_addition + addVowelSuffix(verb_stem, "ओ");
+                }
             }
         }
 

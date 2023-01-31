@@ -42,95 +42,117 @@
              <div class="box_holder">
 
                  <div class="box">
-                     <font size="+2">
-                         <form onsubmit='parseMee();return false'>
-                             <select type='text' id='verb_choice' list='verbs'>
-                                 <!--                         <input type='text' id='verb_choice' list='verbs' />-->
-                                 <datalist id='verbs'>
-                                     <option>होना</option>
-                                     <option>खाना</option>
-                                     <option>लेना</option>
-                                     <option>देना</option>
-                                     <option>जाना</option>
-                                     <option>पिना</option>
-                                     <option>करना</option>
-                                 </datalist>
-                             </select>
+                     <form class="parse_verbs_form" onsubmit='return parseMee();return false;'>
+                         <select type='text' id='verb_choice' list='verbs'>
+                             <!--                         <input type='text' id='verb_choice' list='verbs' />-->
+                             <datalist id='verbs'>
+                                 <option>होना</option>
+                                 <option>खाना</option>
+                                 <option>लेना</option>
+                                 <option>देना</option>
+                                 <option>जाना</option>
+                                 <option>पिना</option>
+                                 <option>करना</option>
+                             </datalist>
+                         </select>
 
-                             <select type='text' id='tense_choice' list='tenses'>
-                                 <datalist id='tenses'>
-                                     <option>present habitual</option>
-                                     <option>simple present</option>
-                                     <option>simple past</option>
-                                     <option>imperative</option>
-                                     <option>present progressive</option>
-                                     <option>past habitual</option>
-                                     <option>past progressive</option>
-                                     <option>future</option>
-                                     <option>perfect</option>
-                                     <option>perfect</option>
-                                 </datalist>
-                             </select>
-                             <input type='submit' />
-                         </form>
-                         <table id='verb_choice_out'>
-                             <tr>
-                                 <td>मैं</td>
-                                 <td>m</td>
-                                 <td class="parseme" data-person="1st" data-number="singular" data-gender="masculine"></td>
-                                 <td>f</td>
-                                 <td class="parseme" data-person="1st" data-number="singular" data-gender="feminine"></td>
-                                 <td>हम</td>
-                                 <td>m</td>
-                                 <td class="parseme" data-person="1st" data-number="plural" data-gender="masculine"></td>
-                                 <td>f</td>
-                                 <td class="parseme" data-person="1st" data-number="plural" data-gender="feminine"></td>
-                             </tr>
-                             <tr>
-                                 <td rowspan=2>तू</td>
-                                 <td rowspan=2>m</td>
-                                 <td rowspan=2 class="parseme" data-person="2nd" data-number="singular" data-gender="masculine"></td>
-                                 <td rowspan=2>f</td>
-                                 <td rowspan=2 class="parseme" data-person="2nd" data-number="singular" data-gender="feminine"></td>
-                                 <td>तुम</td>
-                                 <td>m</td>
-                                 <td class="parseme" data-person="2nd" data-number="plural" data-formality="familar" data-gender="masculine"></td>
-                                 <td>f</td>
-                                 <td class="parseme" data-person="2nd" data-number="plural" data-formality="familar" data-gender="feminine"></td>
-                             </tr>
-                             <tr>
-                                 <td>आप</td>
-                                 <td>m</td>
-                                 <td class="parseme" data-person="2nd" data-number="plural" data-formality="formal" data-gender="masculine"></td>
-                                 <td>f</td>
-                                 <td class="parseme" data-person="2nd" data-number="plural" data-formality="formal" data-gender="feminine"></td>
-                             </tr>
-                             <tr>
-                                 <td>यह</td>
-                                 <td>m</td>
-                                 <td class="parseme" data-person="3rd" data-number="singular" data-distance="near" data-gender="masculine"></td>
-                                 <td>f</td>
-                                 <td class="parseme" data-person="3rd" data-number="singular" data-distance="near" data-gender="feminine"></td>
-                                 <td>ये</td>
-                                 <td>m</td>
-                                 <td class="parseme" data-person="3rd" data-number="plural" data-distance="near" data-gender="masculine"></td>
-                                 <td>f</td>
-                                 <td class="parseme" data-person="3rd" data-number="plural" data-distance="near" data-gender="feminine"></td>
-                             </tr>
-                             <tr>
-                                 <td>वह</td>
-                                 <td>m</td>
-                                 <td class="parseme" data-person="3rd" data-number="singular" data-distance="far" data-gender="masculine"></td>
-                                 <td>f</td>
-                                 <td class="parseme" data-person="3rd" data-number="singular" data-distance="far" data-gender="feminine"></td>
-                                 <td>वे</td>
-                                 <td>m</td>
-                                 <td class="parseme" data-person="3rd" data-number="plural" data-distance="far" data-gender="masculine"></td>
-                                 <td>f</td>
-                                 <td class="parseme" data-person="3rd" data-number="plural" data-distance="far" data-gender="feminine"></td>
-                             </tr>
-                         </table>
-                     </font>
+                         <select type='text' id='tense_choice' list='tenses'>
+                             <datalist id='tenses'>
+                                 <option>present habitual</option>
+                                 <option>simple present</option>
+                                 <option>simple past</option>
+                                 <option>imperative</option>
+                                 <option>present progressive</option>
+                                 <option>past habitual</option>
+                                 <option>past progressive</option>
+                                 <option>future</option>
+                                 <option>perfect</option>
+                                 <option>perfect</option>
+                             </datalist>
+                         </select>
+                         <input type='submit' />
+                     </form>
+                     <table id='verb_choice_out'>
+                         <tr>
+                             <td class="pronoun_holder">
+                                 <div class="pronoun_marker">मैं</div>
+                                 <div class="gender_marker">m</div>
+                                 <div class="parseme" data-person="1st" data-number="singular" data-gender="masculine"></div>
+                                 <div class="gender_marker">f</div>
+                                 <div class="parseme" data-person="1st" data-number="singular" data-gender="feminine"></div>
+                             </td>
+                             <td class="verb_table_space"></td>
+                             <td class="pronoun_holder">
+                                 <div class="pronoun_marker">हम</div>
+                                 <div class="gender_marker">m</div>
+                                 <div class="parseme" data-person="1st" data-number="plural" data-gender="masculine"></div>
+                                 <div class="gender_marker">f</div>
+                                 <div class="parseme" data-person="1st" data-number="plural" data-gender="feminine"></div>
+                             </td>
+                         </tr>
+                         <tr>
+                             <td rowspan=2 class="pronoun_holder">
+                                 <div class="pronoun_marker">तू</div>
+                                 <div class="gender_marker">m</div>
+                                 <div class="parseme" data-person="2nd" data-number="singular" data-formality="intimate" data-gender="masculine"></div>
+                                 <div class="gender_marker">f</div>
+                                 <div class="parseme" data-person="2nd" data-number="singular" data-formality="intimate" data-gender="feminine"></div>
+                             </td>
+                             <td rowspan=2 class="verb_table_space"></td>
+
+                             <td class="pronoun_holder">
+                                 <div class="pronoun_marker">तुम</div>
+                                 <div class="gender_marker">m</div>
+                                 <div class="parseme" data-person="2nd" data-number="plural" data-formality="familiar" data-gender="masculine"></div>
+                                 <div class="gender_marker">f</div>
+                                 <div class="parseme" data-person="2nd" data-number="plural" data-formality="familiar" data-gender="feminine"></div>
+                             </td>
+                         </tr>
+                         <tr>
+                             <td class="pronoun_holder">
+                                 <div class="pronoun_marker">आप</div>
+                                 <div class="gender_marker">m</div>
+                                 <div class="parseme" data-person="2nd" data-number="plural" data-formality="formal" data-gender="masculine"></div>
+                                 <div class="gender_marker">f</div>
+                                 <div class="parseme" data-person="2nd" data-number="plural" data-formality="formal" data-gender="feminine"></div>
+                             </td>
+                         </tr>
+                         <tr>
+                             <td class="pronoun_holder">
+                                 <div class="pronoun_marker">यह</div>
+                                 <div class="gender_marker">m</div>
+                                 <div class="parseme" data-person="3rd" data-number="singular" data-distance="near" data-gender="masculine"></div>
+                                 <div class="gender_marker">f</div>
+                                 <div class="parseme" data-person="3rd" data-number="singular" data-distance="near" data-gender="feminine"></div>
+                             </td>
+                             <td class="verb_table_space"></td>
+
+                             <td class="pronoun_holder">
+                                 <div class="pronoun_marker">ये</div>
+                                 <div class="gender_marker">m</div>
+                                 <div class="parseme" data-person="3rd" data-number="plural" data-distance="near" data-gender="masculine"></div>
+                                 <div class="gender_marker">f</div>
+                                 <div class="parseme" data-person="3rd" data-number="plural" data-distance="near" data-gender="feminine"></div>
+                             </td>
+                         </tr>
+                         <tr>
+                             <td class="pronoun_holder">
+                                 <div class="pronoun_marker">वह</div>
+                                 <div class="gender_marker">m</div>
+                                 <div class="parseme" data-person="3rd" data-number="singular" data-distance="far" data-gender="masculine"></div>
+                                 <div class="gender_marker">f</div>
+                                 <div class="parseme" data-person="3rd" data-number="singular" data-distance="far" data-gender="feminine"></div>
+                             </td>
+                             <td class="verb_table_space"></td>
+                             <td class="pronoun_holder">
+                                 <div class="pronoun_marker">वे</div>
+                                 <div class="gender_marker">m</div>
+                                 <div class="parseme" data-person="3rd" data-number="plural" data-distance="far" data-gender="masculine"></div>
+                                 <div class="gender_marker">f</div>
+                                 <div class="parseme" data-person="3rd" data-number="plural" data-distance="far" data-gender="feminine"></div>
+                             </td>
+                         </tr>
+                     </table>
                  </div>
              </div>
          </div>
