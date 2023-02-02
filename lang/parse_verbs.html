@@ -61,11 +61,19 @@
                                  <option class="tense_option">present habitual</option>
                              </datalist>
                          </select>
+                         <input type='checkbox' id="negative_checkbox" />
+                         <span style="font-size:1.5em;color:black">negative</span>
                          <input type='submit' value="Conjugate!" />
-                         <div id="parse_verbs_form_notes">Enter or select a verb!</div>
+                         <div id="parse_verbs_form_notes" style="font-size:1.5em;">Enter or select a verb!</div>
                      </form>
                      <table id='verb_choice_out'>
+                         <tr class="verb_table_heading">
+                             <td colspan="3" class="verb_table_heading_marker">singular</td>
+                             <td class="verb_table_space"></td>
+                             <td colspan="3" class="verb_table_heading_marker">plural</td>
+                         </tr>
                          <tr>
+                             <td colspan="2" class="verb_table_heading_marker">1st</td>
                              <td class="pronoun_holder">
                                  <div class="pronoun_marker">मैं</div>
                                  <div class="gender_marker">m</div>
@@ -74,6 +82,7 @@
                                  <div class="parseme" data-person="1st" data-number="singular" data-gender="feminine"></div>
                              </td>
                              <td class="verb_table_space"></td>
+                             <td colspan="2" class="verb_table_heading_marker">1st</td>
                              <td class="pronoun_holder">
                                  <div class="pronoun_marker">हम</div>
                                  <div class="gender_marker">m</div>
@@ -83,15 +92,16 @@
                              </td>
                          </tr>
                          <tr>
-                             <td rowspan=2 class="pronoun_holder">
+                             <td colspan="2" rowspan="2" class="verb_table_heading_marker">2nd</td>
+                             <td class="pronoun_holder">
                                  <div class="pronoun_marker">तू</div>
                                  <div class="gender_marker">m</div>
                                  <div class="parseme" data-person="2nd" data-number="singular" data-formality="intimate" data-gender="masculine"></div>
                                  <div class="gender_marker">f</div>
                                  <div class="parseme" data-person="2nd" data-number="singular" data-formality="intimate" data-gender="feminine"></div>
                              </td>
-                             <td rowspan=2 class="verb_table_space"></td>
-
+                             <td class="verb_table_space"></td>
+                             <td colspan="2" rowspan="2" class="verb_table_heading_marker">2nd</td>
                              <td class="pronoun_holder">
                                  <div class="pronoun_marker">तुम</div>
                                  <div class="gender_marker">m</div>
@@ -101,6 +111,8 @@
                              </td>
                          </tr>
                          <tr>
+                             <td class="verb_table_pronoun_space"></td>
+                             <td class="verb_table_space"></td>
                              <td class="pronoun_holder">
                                  <div class="pronoun_marker">आप</div>
                                  <div class="gender_marker">m</div>
@@ -110,6 +122,9 @@
                              </td>
                          </tr>
                          <tr>
+
+                             <td rowspan="2" class="verb_table_heading_marker">3rd</td>
+                             <td class="verb_table_heading_marker">near</td>
                              <td class="pronoun_holder">
                                  <div class="pronoun_marker">यह</div>
                                  <div class="gender_marker">m</div>
@@ -118,7 +133,8 @@
                                  <div class="parseme" data-person="3rd" data-number="singular" data-distance="near" data-gender="feminine"></div>
                              </td>
                              <td class="verb_table_space"></td>
-
+                             <td rowspan="2" class="verb_table_heading_marker">3rd</td>
+                             <td class="verb_table_heading_marker">near</td>
                              <td class="pronoun_holder">
                                  <div class="pronoun_marker">ये</div>
                                  <div class="gender_marker">m</div>
@@ -128,6 +144,7 @@
                              </td>
                          </tr>
                          <tr>
+                             <td class="verb_table_heading_marker">far</td>
                              <td class="pronoun_holder">
                                  <div class="pronoun_marker">वह</div>
                                  <div class="gender_marker">m</div>
@@ -136,6 +153,7 @@
                                  <div class="parseme" data-person="3rd" data-number="singular" data-distance="far" data-gender="feminine"></div>
                              </td>
                              <td class="verb_table_space"></td>
+                             <td class="verb_table_heading_marker">far</td>
                              <td class="pronoun_holder">
                                  <div class="pronoun_marker">वे</div>
                                  <div class="gender_marker">m</div>
@@ -144,9 +162,16 @@
                                  <div class="parseme" data-person="3rd" data-number="plural" data-distance="far" data-gender="feminine"></div>
                              </td>
                          </tr>
+                         <tr class="verb_table_heading_row_spacer">
+                             <td colspan="7"></td>
+                         </tr>
                          <tr>
-                             <td class="pronoun_holder">
-                                 <div class="pronoun_marker">neut.</div>
+                             <td colspan="7" class="verb_table_heading_marker">neutral</td>
+                         </tr>
+                         <tr>
+                             <td class="verb_table_heading_marker">2nd</td>
+                             <td colspan="6" class="pronoun_holder">
+                                 <div class="pronoun_marker"></div>
                                  <div class="gender_marker"></div>
                                  <div class="parseme" data-person="2nd" data-formality="neutral"></div>
                                  <div class="gender_marker"></div>
@@ -154,8 +179,7 @@
                              </td>
                          </tr>
                      </table>
-                     <div class="jain_ref">For more info, see chapter <span class="jain_chap"></span> (page <span class="jain_page"></span>) of Jain's Intro to Hindi Grammar.
-                     </div>
+                     <div class="jain_ref"></div>
                      <br>
                      <p><a href="./hindi_index.html" title="Hindi">Return to my Hindi page!</a></p>
                  </div>

@@ -26,7 +26,8 @@ body {
 
 p,
 input,
-select {
+select,
+option {
     font-family: Annapurna, Optima, monospace;
 }
 
@@ -74,6 +75,7 @@ strong {
 
 #verb_choice_out div.pronoun_marker {
     width: 2em;
+    color: darkslategray;
 }
 
 #verb_choice_out div.parseme {

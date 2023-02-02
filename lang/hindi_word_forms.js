@@ -27,7 +27,8 @@ function parseMee() {
     var distance = "";
     var formality = "";
     var gender = "";
-    var negative = "false";
+    var negative = document.getElementById("negative_checkbox").checked;
+    console.log(negative);
     for (j = 0; j < pronoun_holders.length; j++) {
         pronoun_holders[j].style.borderWidth = "1px";
         var text_holders = pronoun_holders[j].getElementsByTagName("div");
@@ -82,7 +83,7 @@ function parseMee() {
 
 function updateJainRefs(tense) {
     var tense_map = new Map();
-    tense_map.set("simple present", [4, 38]);
+    tense_map.set("simple present", [4, 42]);
     tense_map.set("simple past", [16, 134]);
     tense_map.set("present habitual", [9, 82]);
     tense_map.set("present progressive", [12, 105]);
@@ -91,10 +92,8 @@ function updateJainRefs(tense) {
     tense_map.set("future", [21, 157]);
     tense_map.set("perfect", [23, 170]);
     tense_map.set("imperative", [5, 52]);
-    var chapt = document.getElementsByClassName("jain_chap")[0];
-    var page = document.getElementsByClassName("jain_page")[0];
-    chapt.innerHTML = tense_map.get(tense)[0];
-    page.innerHTML = tense_map.get(tense)[1];
+    var jain_div = document.getElementsByClassName("jain_ref")[0];
+    jain_div.innerHTML = "For more info on " + tense + " forms, see chapter " + tense_map.get(tense)[0] + " (page " + tense_map.get(tense)[1] + ") of Usha Jain's Intro to Hindi Grammar."
 }
 
 function linkSelectors() {
@@ -113,6 +112,8 @@ function linkSelectors() {
     tense_options_all.push("past progressive");
     tense_options_all.push("future");
     tense_options_all.push("perfect");
+    //    tense_options_all.push("present perfect");
+    //    tense_options_all.push("past perfect");
     tense_options_all.push("imperative");
 
     tense.innerHTML = "";
@@ -237,9 +238,9 @@ function returnForm({
     tense = "present habitual",
     formality = "formal",
     distance = "near",
-    negative = "false"
+    negative
 }) {
-    //    console.log("args!!", word, type, person, number, gender, form, tense, formality, distance, negative);
+    console.log("args!!", word, type, person, number, gender, form, tense, formality, distance, negative);
 
     if (type === "verb") {
         if (word === "होना") {
@@ -319,7 +320,7 @@ function conjugateVerb(word, person, number, gender, tense, formality, distance,
     if (tense === "present habitual") {
         // chapter 9 page 82
         hona_form += conjugateHona(person, number, gender, "simple present", formality, distance);
-        if (negative === "true") {
+        if (negative === true) {
             negative_addition = "नहीं ";
             hona_form = "";
         }
@@ -352,7 +353,7 @@ function conjugateVerb(word, person, number, gender, tense, formality, distance,
             if (formality === "very formal") {
                 formal_addition = "गा";
             }
-            if (negative === "true") {
+            if (negative == true) {
                 if ((formality === "familiar") || (formality === "intimate")) {
                     negative_addition = "मत ";
                 } else {
@@ -385,7 +386,7 @@ function conjugateVerb(word, person, number, gender, tense, formality, distance,
     } else if (tense === "present progressive") {
         // chapter 12 page 105
         hona_form += conjugateHona(person, number, gender, "simple present", formality, distance);
-        if (negative === "true") {
+        if (negative === true) {
             negative_addition = "नहीं ";
         }
         if (gender === "masculine") {
@@ -400,7 +401,7 @@ function conjugateVerb(word, person, number, gender, tense, formality, distance,
     } else if (tense === "past habitual") {
         // chapter 17 page 138
         hona_form += conjugateHona(person, number, gender, "simple past", formality, distance);
-        if (negative === "true") {
+        if (negative === true) {
             negative_addition = "नहीं ";
         }
         if (gender === "masculine") {
@@ -415,7 +416,7 @@ function conjugateVerb(word, person, number, gender, tense, formality, distance,
     } else if (tense === "past progressive") {
         // chapter 18 page 142
         hona_form += conjugateHona(person, number, gender, "simple past", formality, distance);
-        if (negative === "true") {
+        if (negative === true) {
             negative_addition = "नहीं ";
         }
         if (gender === "masculine") {
@@ -438,7 +439,7 @@ function conjugateVerb(word, person, number, gender, tense, formality, distance,
         if (irregular_future_stem.has(word)) {
             verb_stem = irregular_future_stem.get(word);
         }
-        if (negative === "true") {
+        if (negative === true) {
             negative_addition = "नहीं ";
         }
         var future_suffixes = "";
