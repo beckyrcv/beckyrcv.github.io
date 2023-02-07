@@ -155,3 +155,28 @@ div.drag_match {
     background-color: lightyellow;
     box-shadow: inset 0 0 0 1px #f8a100;
 }
+
+div.typing div.typing_feedback {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+table.typing_game_table {
+    width: 100%;
+}
+
+table.typing_game_table div,
+table.typing_game_table form {
+    display: inline;
+}
+
+table.typing_game_table div.typing,
+table.typing_game_table form input {
+    font-size: 1.5em;
+}
+
+table.typing_game_table,
+table.typing_game_table td {
+    text-align: center;
+    border: none;
+}

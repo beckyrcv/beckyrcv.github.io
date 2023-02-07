@@ -36,16 +36,15 @@
      <div class="page_body">
 
          <!--      Add the sidebar --->
-         <div id="sidenav_div" class="sidenav"></div>
+         <div id="sidenav_div" class="sidenav_small"></div>
 
          <div class="main_index_main">
              <div class="box_holder">
-
                  <div class="box">
                      <h2>Conjugate Hindi Verbs!</h2>
                      <br>
                      <form class="parse_verbs_form" onsubmit='return parseMee();return false;' onload="linkSelectors();">
-                         <input type='text' id='verb_choice' list='verbs' onchange="linkSelectors();">
+                         <input type='text' id='verb_choice' list='verbs' onchange="linkSelectors();" required>
                          <datalist id='verbs'>
                              <option>होना</option>
                              <option>खाना</option>
@@ -55,7 +54,6 @@
                              <option>पिना</option>
                              <option>करना</option>
                          </datalist>
-
                          <select type='text' id='tense_choice' list='tenses'>
                              <datalist id='tenses'>
                                  <option class="tense_option">present habitual</option>

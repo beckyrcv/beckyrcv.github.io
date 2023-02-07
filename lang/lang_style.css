@@ -27,6 +27,7 @@ body {
 p,
 input,
 select,
+button,
 option {
     font-family: Annapurna, Optima, monospace;
 }

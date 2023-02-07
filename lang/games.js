@@ -122,6 +122,43 @@ function drawSVGCircle(cx, cy, r, stroke, stroke_width, fill_color, imwidth = nu
 //find nearest square
 var nearest_sq = n => Math.pow(Math.round(Math.sqrt(n)), 2);
 
+function showHint(guess, correct) {
+    var guess_out = "";
+    var color = "orange";
+    var j_index = null;
+
+    for (var i = 0; i < guess.length; i++) {
+        var match = "false";
+        color = "orange";
+        for (var j = 0; j < correct.length; j++) {
+            if (guess.charAt(i) === correct.charAt(j)) {
+                if (j_index === null) {
+                    j_index = j;
+                    match = "true";
+                } else if (j > j_index) {
+                    if (match === "false") {
+                        if ((j - j_index) > 1) {
+                            for (var jj = 0; jj < (j - j_index); jj++) {
+                                guess_out += "<font style='background-color:orange'>&nbsp;</font>";
+                            }
+                        }
+                        j_index = j;
+                        match = "true";
+                    }
+                }
+            }
+        }
+        if (match === "true") {
+            color = "lightblue";
+            last_match = "true";
+        } else {
+            last_match = "false";
+        }
+        guess_out += "<font style='background-color:" + color + "'>" + guess.charAt(i) + "</font>";
+    }
+    return guess_out;
+}
+
 function setupPronounDivs(game_html, split_gender) {
 
     var pronouns = new Array(["मैं", "sp", "तू", "full_sp", "sp", "यह", "वह"], ["हम", "sp", "तुम", "आप", "sp", "ये", "वे"]);
@@ -325,7 +362,6 @@ function addVerbMatchingListeners(game_holder, num, game_setup_record) {
 
 function addLocationMatchingListeners(game_holder, num, game_setup_record) {
 
-    console.log("loc matching listeners called");
     var game_id = "game" + num;
     var game_div = document.querySelector("#" + game_id);
     var tds = game_div.querySelectorAll("div.locate.active");
@@ -489,8 +525,7 @@ function setupGame(game_holder, num, input) {
     }
     var game_setup_record = DOMPurify.sanitize(game_holder.innerHTML);
     game_holder.innerHTML = game_html;
-    //    findImgLocations("div.location_matching_game img");
-    //
+
     var width_height = findCardWidthAndHeight("#" + game_id + " div.game_row div", 25, 0);
 
     document.querySelectorAll("#" + game_id + " div.game_row div").forEach(function (match_div) {
@@ -507,52 +542,77 @@ function setupGame(game_holder, num, input) {
     } else if (game_holder.classList.contains("location_matching")) {
         addLocationMatchingListeners(game_holder, num, game_setup_record);
     } else if (game_holder.classList.contains("typing")) {
-        addTypingListeners(game_holder, num, game_setup_record);
+        addTypingListeners(game_holder, num, game_setup_record, input);
     }
 }
 
-function addTypingListeners(game_holder, num, game_setup_record) {
-
-    console.log("typing matching listeners called");
+function addTypingListeners(game_holder, num, game_setup_record, input) {
     var game_id = "game" + num;
     var game_div = document.querySelector("#" + game_id);
     var source_cat = game_holder.dataset.source;
     var target_cat = game_holder.dataset.target;
     var input = JSON.parse(game_setup_record);
-    console.log(input);
+    shuffleArray(input);
 
-    var game_html = "<div class='typing'><b>" + input[0][source_cat] + "</b> " + input[0][target_cat] + ":&nbsp;</div>";
-    game_html += "<form id='" + game_id + "_form' ><input type='text' id='" + game_id + "_input' required maxlength='20'><input type='submit' style='display:none;'/></form>";
-    game_html += "<div id='" + game_id + "_feedback' class='typing_feedback'></div>";
+    var game_html = "<table class='typing_game_table'><tr><td><div id='" + game_id + "_target' class='typing' data-source='" + input[0][source_cat] + "' data-target='" + input[0][target_cat] + "' data-index='0'><b>" + input[0][source_cat] + "</b>&nbsp;</div></td></tr>";
+    game_html += "<tr><td><form id='" + game_id + "_form' ><input type='text' id='" + game_id + "_input' required maxlength='20'><input type='submit' value='check'/></form></td></tr>";
+    game_html += "<tr><td><div id='" + game_id + "_feedback' class='typing_feedback'></div></td></tr>";
+    game_html += "<tr><td><button  type='button' id='" + game_id + "_show_typing_answer' class='show_typing_answer''>show answer</button>";
+    game_html += "<div id='" + game_id + "_show_typing_answer_value' class='show_typing_answer_value'></div></td></tr></table>";
     game_div.innerHTML = game_html;
-    addTypingFormListeners(game_id, input, input[0][source_cat], input[0][target_cat]);
+    addTypingFormListeners(game_holder, game_id, input);
 }
 
-function addTypingFormListeners(game_id, input, source_cat, target_cat) {
+function addTypingFormListeners(game_holder, game_id, input) {
     const form = document.getElementById(game_id + "_form");
     const text_input = document.getElementById(game_id + "_input");
     const log = document.getElementById(game_id + "_feedback");
+    var target_text = document.getElementById(game_id + "_target");
+    const show_answer = document.getElementById(game_id + "_show_typing_answer");
 
-    console.log(findForm(source_cat, target_cat));
+    function getNextWord(game_holder, game_id, input) {
+        const text_input = document.getElementById(game_id + "_input");
+        var source_cat = game_holder.dataset.source;
+        var target_cat = game_holder.dataset.target;
+        var target_text = document.getElementById(game_id + "_target");
+        var target_index = parseInt(target_text.dataset.index);
+        var show_answer_val = document.getElementById(game_id + "_show_typing_answer_value");
+
+        if (target_index === input.length) {
+            shuffleArray(input);
+            target_index = 0;
+        } else {
+            target_index += 1;
+        }
+        target_text.dataset.index = target_index;
+        target_text.dataset.target = input[target_index][target_cat];
+        target_text.dataset.source = input[target_index][source_cat];
+        target_text.innerHTML = "<b>" + input[target_index][source_cat] + "</b>:&nbsp;";
+        show_answer_val.innerHTML = "";
+        text_input.value = "";
+        return input;
+    }
+
+    function showAnswerSubmit(event) {
+        var target_text = document.getElementById(game_id + "_target");
+        var target_cat_val = target_text.dataset.target;
+        var show_answer_val = document.getElementById(game_id + "_show_typing_answer_value");
+        show_answer_val.innerHTML = "&nbsp;" + target_cat_val;
+    }
+    show_answer.addEventListener('click', showAnswerSubmit);
 
     function typingFormSubmit(event) {
-        var temp_value = DOMPurify.sanitize(text_input.value);
-        var text_answer = (temp_value === "ddd" ? "correct" : "incorrect");
-        log.textContent = " " + temp_value + " is " + text_answer;
         event.preventDefault();
+        var temp_value = DOMPurify.sanitize(text_input.value).trim();
+        var target_cat_val = target_text.dataset.target;
+        var source_cat_val = target_text.dataset.source;
+        var text_answer = (temp_value === target_cat_val ? "correct" : "incorrect");
+        log.innerHTML = " " + showHint(temp_value, target_cat_val) + " is " + text_answer + " for " + source_cat_val + "!";
+        if (text_answer === "correct") {
+            input = getNextWord(game_holder, game_id, input);
+        }
     }
     form.addEventListener('submit', typingFormSubmit);
-}
-
-function findForm(hindi_word, target_form, target_match) {
-    hindi_word = "होना"
-    target_form = "perfect"
-    target_match = "1 sing f"
-}
-
-function conjugateHona(target_form, target_match) {
-    var forms = '{"present":  {}}'
-
 }
 
 function buildGame() {

@@ -36,7 +36,7 @@
      <div class="page_body">
 
          <!--      Add the sidebar --->
-         <div id="sidenav_div" class="sidenav"></div>
+         <div id="sidenav_div" class="sidenav_small"></div>
 
          <div class="main_index_main">
              <div class="box_holder">
@@ -44,27 +44,83 @@
                      <h2>Becky's Hindi Resources</h2>
                      <p>As I've been learning Hindi, I have created some resources to share with other learners! This page is still under active development! So far, these work best on a computer, but I am working on getting phone versions ready as well.</p>
                  </div>
-                 <div class="box" style="flex-basis: 100%">
+                 <div class="box" style="flex-basis: 0">
                      <h2>Parse Hindi Words</h2>
                      <p><a href="./parse_verbs.html" title="Hindi Parser">Visit this page to conjugate some Hindi verbs!</a></p>
                  </div>
                  <div class="box" style="flex-basis: 100%">
-                     <h2>Typing Game</h2>
-                     <p>Type in the correct form.</p>
-                     <div class="game typing construction" data-source="hindi" data-target="form">[
-                         {"hindi":"खाना", "form":"perfect", "word-type":"verb"},
-                         {"hindi":"जाना", "form":"perfect", "word-type":"verb"}
+                     <h2>Time Expressions Typing Game</h2>
+                     <p>Type in the correct word for these time expressions.</p>
+                     <div class="game typing" data-source="english" data-target="hindi">[
+                         {"hindi":"चौथाई", "english":"quarter", "category":["time expressions", "fractions"]},
+                         {"hindi":"आधा", "english":"half", "category":["time expressions", "fractions"]},
+                         {"hindi":"पौन/पौना", "english":"three-quarters", "category":["time expressions", "fractions"]},
+                         {"hindi":"पौने+numeral", "english":"quarter less than numeral", "category":["time expressions", "fractions"]},
+                         {"hindi":"सवा", "english":"one and a quarter", "category":["time expressions", "fractions"]},
+                         {"hindi":"सवा+numeral", "english":"numeral plus a quarter", "category":["time expressions", "fractions"]},
+                         {"hindi":"डेढ़", "english":"one and a half", "category":["time expressions", "fractions"]},
+                         {"hindi":"ढाई", "english":"two and a half", "category":["time expressions", "fractions"]},
+                         {"hindi":"साढ़े+numeral", "english":"numeral plus half", "category":["time expressions", "fractions"]},
+                         {"hindi":"सुबह", "english":"morning (f)", "gender":"F", "category":["time expressions", "parts of the day"]},
+                         {"hindi":"सवेरा", "english":"morning (m)", "gender":"M", "category":["time expressions", "parts of the day"]},
+                         {"hindi":"सवेरे/सुबग को", "english":"in the morning", "category":["time expressions", "parts of the day"]},
+                         {"hindi":"दोपहर", "english":"afternoon", "gender":"F", "category":["time expressions", "parts of the day"]},
+                         {"hindi":"दोपहर को", "english":"at noon; in the afternoon", "category":["time expressions", "parts of the day"]},
+                         {"hindi":"शाम", "english":"evening", "gender":"F", "category":["time expressions", "parts of the day"]},
+                         {"hindi":"शाम को", "english":"in the evening", "category":["time expressions", "parts of the day"]},
+                         {"hindi":"रात", "english":"night", "gender":"F", "category":["time expressions", "parts of the day"]},
+                         {"hindi":"रात को", "english":"at night", "category":["time expressions", "parts of the day"]},
+                         {"hindi":"आज", "english":"today", "category":["time expressions"]},
+                         {"hindi":"कल", "english":"tomorrow, yesterday", "category":["time expressions"]},
+                         {"hindi":"परसों", "english":"day after tomorrow, day before yesterday", "category":["time expressions"]},
+                         {"hindi":"आजकल", "english":"these days", "category":["time expressions"]},
+                         {"hindi":"रात", "english":"night", "gender":"F", "category":["time expressions"]},
+                         {"hindi":"दिन", "english":"day", "gender":"M", "category":["time expressions"]},
+                         {"hindi":"साल", "english":"year", "gender":"M", "category":["time expressions"]},
+                         {"hindi":"महीना", "english":"month", "gender":"M", "category":["time expressions"]},
+                         {"hindi":"हफ़्ता", "english":"week (v1)", "gender":"M", "category":["time expressions"]},
+                         {"hindi":"सप्ताह", "english":"week (v2)", "gender":"M", "category":["time expressions"]},
+                         {"hindi":"तारीख़", "english":"date (f)", "gender":"F", "category":["time expressions"]},
+                         {"hindi":"दिनांक", "english":"date (m)", "gender":"F", "category":["time expressions"]},
+                         {"hindi":"घंटा", "english":"hour", "gender":"M", "category":["time expressions"]},
+                         {"hindi":"क़रीब", "english":"approximately (v1)", "category":["time expressions"]},
+                         {"hindi":"लगभग", "english":"approximately (v2)", "category":["time expressions"]},
+                         {"hindi":"घड़ी", "english":"approximately", "gender":"F", "category":["time expressions"]},
+                         {"hindi":"हफ़्ते/सप्ताह के दिन", "english":"Days of the week", "category":["time expressions"]},
+                         {"hindi":"ईसवी/ई॰", "english":"A.D.", "category":["time expressions"]},
+                         {"hindi":"ईसा पूर्व/ई॰ पू॰", "english":"B.C.", "category":["time expressions"]},
+                         {"hindi":"कार्य-दिवस", "english":"weekday", "category":["time expressions"]},
+                         {"hindi":"सप्ताहांत", "english":"weekend", "category":["time expressions"]},
+                         {"hindi":"सोमवार", "english":"Monday", "gender":"M", "category":["time expressions", "weekdays"]},
+                         {"hindi":"मंगलवार", "english":"Tuesday", "gender":"M", "category":["time expressions", "weekdays"]},
+                         {"hindi":"बुधवार", "english":"Wednesday", "gender":"M", "category":["time expressions", "weekdays"]},
+                         {"hindi":"बृहस्पतिवार", "english":"Thursday (v1 Jupiter)", "gender":"M", "category":["time expressions", "weekdays"]},
+                         {"hindi":"वीरवार", "english":"Thursday (v2 hero)", "gender":"M", "category":["time expressions", "weekdays"]},
+                         {"hindi":"गुरुवार", "english":"Thursday (v2 guru)", "gender":"M", "category":["time expressions", "weekdays"]},
+                         {"hindi":"शुक्रवार", "english":"Friday", "gender":"M", "category":["time expressions", "weekdays"]},
+                         {"hindi":"शनिवार", "english":"Saturday", "gender":"M", "category":["time expressions", "weekdays"]},
+                         {"hindi":"रविवार", "english":"Sunday (v1 sun)", "gender":"M", "category":["time expressions", "weekdays"]},
+                         {"hindi":"इतवार", "english":"Sunday (v2)", "gender":"M", "category":["time expressions", "weekdays"]},
+                         {"hindi":"जनवरी", "english":"January", "gender":"F", "category":["time expressions", "months"]},
+                         {"hindi":"फ़रवरी", "english":"February", "gender":"F", "category":["time expressions", "months"]},
+                         {"hindi":"मार्च", "english":"March", "gender":"M", "category":["time expressions", "months"]},
+                         {"hindi":"अप्रैल", "english":"April", "gender":"M", "category":["time expressions", "months"]},
+                         {"hindi":"मई", "english":"May", "gender":"F", "category":["time expressions", "months"]},
+                         {"hindi":"जून", "english":"June", "gender":"M", "category":["time expressions", "months"]},
+                         {"hindi":"जुलाई", "english":"July", "gender":"F", "category":["time expressions", "months"]},
+                         {"hindi":"अगस्त", "english":"August", "gender":"M", "category":["time expressions", "months"]},
+                         {"hindi":"सितम्बर", "english":"September", "gender":"M", "category":["time expressions", "months"]},
+                         {"hindi":"अक्टूबर", "english":"October", "gender":"M", "category":["time expressions", "months"]},
+                         {"hindi":"नवम्बर", "english":"November", "gender":"M", "category":["time expressions", "months"]},
+                         {"hindi":"दिसम्बर", "english":"December", "gender":"M", "category":["time expressions", "months"]},
+                         {"hindi":"जाड़ा", "english":"winter", "gender":"M", "category":["time expressions", "seasons"]},
+                         {"hindi":"गरमी/गर्मी", "english":"summer", "gender":"F", "category":["time expressions", "seasons"]},
+                         {"hindi":"बरसात", "english":"rainy season; rain", "gender":"F", "category":["time expressions", "seasons"]},
+                         {"hindi":"वसन्त", "english":"spring", "gender":"M", "category":["time expressions", "seasons"]},
+                         {"hindi":"पतझड़", "english":"fall", "gender":"M", "category":["time expressions", "seasons"]}
                          ]
                      </div>
                  </div>
-                 <div class="box construction" style="flex-basis: 100%">
-                     <h2>Postposition Matching Game</h2>
-                     <p>Drag the postposition to a matching position on the image.</p>
-                     <div class="game location_matching" data-source="hindi" data-target="location" data-background-img="img/table_sketch.png" data-imgwidth="200px" data-imgheight="100px">[{"hindi":"के ऊपर", "english":"above, on, on top of","location":"90, 30"},
-                         {"hindi":"के नीचे", "english":"under, beneath, below", "location":"90,80"}]
-                     </div>
-                 </div>
-
                  <div class="box">
                      <h2>Verb Matching Game</h2>
                      <p>Drag the verb form to a matching pronoun.</p>
@@ -101,7 +157,7 @@
                      <div class="game matching" data-match="hindi-english" data-display_extra="english-color">[{"hindi":"रंग", "english":"color", "color":["#FFA500", "#808080", "#008000"]}, {"hindi":"सफेद", "english":"white", "color":"#FFFFFF"}, {"hindi":"पीला", "english":"yellow", "color":"#FFFF00"}, {"hindi":"हरा", "english":"green", "color":"#008000"}, {"hindi":"स्लेटी", "english":"grey", "color":"#808080"}, {"hindi":"भूरा", "english":"brown", "color":"#A52A2A"}, {"hindi":"संतरा", "english":"orange", "color":"#FFA500"}, {"hindi":"केसरिया", "english":"safron", "color":"#F4C430"}, {"hindi":"गेरुआ", "english":"ochre", "color":"#CC7722"}, {"hindi":"काला", "english":"black", "color":"#000000"}, {"hindi":"जामुनी", "english":"purple", "color":"#800080"}, {"hindi":"गुलाबी", "english":"pink", "color":"#FFC0CB"}, {"hindi":"लाल", "english":"red", "color":"#FF0000"}, {"hindi":"भदमैला", "english":"beige", "color":"#F5F5DC"}, {"hindi":"हल्का", "english":"light", "color":["#F5F5DC", "#FFC0CB", "#FFFFFF"]}, {"hindi":"गहरा", "english":"dark", "color":["#808080", "#000000", "#A52A2A"]}, {"hindi":"नीला", "english":"blue", "color":"#0000FF"}]</div>
                  </div>
 
-                 <div class="box">
+                 <div class="box" style="flex-basis: 100%">
                      <h2>Grammatical Gender Guessing Game</h2>
                      <p>Match the word to the correct grammatical gender. Click to toggle between Hindi and English.</p>
                      <div class="game catagorize" data-source="hindi" data-target="gender" data-flip="english">[{"hindi":"रंग", "gender":"M", "english":"color"}, {"hindi":"घर", "gender":"M", "english":"home"}, {"hindi":"काग़ज़", "gender":"M", "english":"paper"}, {"hindi":"फल", "gender":"M", "english":"fruit"}, {"hindi":"शहर", "gender":"M", "english":"city"}, {"hindi":"जानवर", "gender":"M", "english":"animal"}, {"hindi":"आदमी", "gender":"M", "english":"man"}, {"hindi":"किताब", "gender":"F", "english":"book"}, {"hindi":"मे़ज़", "gender":"F", "english":"table"}, {"hindi":"औरत", "gender":"F", "english":"woman"}, {"hindi":"भाषा", "gender":"F", "english":"language"}, {"hindi":"माता", "gender":"F", "english":"mother"}]</div>
@@ -175,7 +231,7 @@
                              बहरहाल:by the way (used to change topic)</p>
                      </details>
                  </div>
-                 <div class="box construction">
+                 <div class="box construction" style="flex-basis: 100%">
                      <h2>Hindi Grammer Overview</h2>
                      <div class="box_holder col">
                          <div class="box">
@@ -196,6 +252,13 @@
                          <div class="box">
                              <h2>Adverbs</h2>
                          </div>
+                     </div>
+                 </div>
+                 <div class="box construction" style="flex-basis: 100%">
+                     <h2>Postposition Matching Game</h2>
+                     <p>Drag the postposition to a matching position on the image.</p>
+                     <div class="game location_matching" data-source="hindi" data-target="location" data-background-img="img/table_sketch.png" data-imgwidth="200px" data-imgheight="100px">[{"hindi":"के ऊपर", "english":"above, on, on top of","location":"90, 30"},
+                         {"hindi":"के नीचे", "english":"under, beneath, below", "location":"90,80"}]
                      </div>
                  </div>
              </div>

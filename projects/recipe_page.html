@@ -2,7 +2,7 @@
  <html>
 
  <head>
-     <title>Vandewalle | Art &amp; Design</title>
+     <title>Vandewalle | Recipes</title>
 
      <!--      load primary css -->
      <link href="../assets/style.css" rel="stylesheet" type="text/css" />
@@ -12,6 +12,9 @@
 
      <!--      load icon set -->
      <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
+
+     <!--      load dom purify -->
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.3/purify.min.js"></script>
 
  </head>
 
@@ -27,27 +30,15 @@
      <div class="page_body">
 
          <!--      Add the sidebar --->
-         <div id="sidenav_div" class="sidenav sidenav_small"></div>
+         <div id="sidenav_div" class="sidenav_small"></div>
 
          <div class="main_index_main">
-             <div class="box_holder construction">
+             <div class="box_holder">
                  <div class="box">
-                     <h2>Art &amp; Design</h2>
-                     <p>I have frequently created art as part of my academic work. Here are some examples.</p>
+                     <h2>Recipes</h2>
+                     <p>[{"type":"meal breakfast", "cuisne":"texmex", "freezer":"true", "prep":"easy", link":"https://iowagirleats.com/diy-frozen-breakfast-burritos/#recipe-card", "serves":"8", "ingredients":[["3/4 lb", "bacon"], ["12", "eggs"], ["salt"], ["pepper"], ["hot sauce"], ["8", "tortillas", "large"], ["1/2 cup", "1 cup", "cheese", "cheddar", "shredded"], ["1/4 cup", "1/2 cup", "salsa"]]},]</p>
                  </div>
-                 <div class="box">
-                     <h2>I-GUIDE Figures</h2>
-                     <p>Rebecca</p>
-                 </div>
-                 <div class="box">
-                     <h2>Wall Posters</h2>
-                     <p>Rebecca</p>
-                 </div>
-                 <div class="box">
-                     <h2>Interactive Maps</h2>
-                     <p>Rebecca</p>
-                 </div>
-                 <div class="closing_box"></div>
+
              </div>
          </div>
      </div>
@@ -60,7 +51,6 @@
      <script type="text/javascript" src="../assets/features.js"></script>
      <script type="text/javascript">
          loadBars("child");
-         addExpandButton();
 
      </script>
  </body>

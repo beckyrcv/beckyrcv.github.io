@@ -1,10 +1,9 @@
 /* included fonts */
 
 @font-face {
-    font-family: GrotleyRegular;
-    src: url('GrotleyRegular-mLEWv.otf');
-    src: url('GrotleyRegular-mLEWv.otf') format('opentype'),
-        url('GrotleyRegular-mLEWv.ttf') format('truetype');
+    font-family: GRTRegular;
+    src: url('Grt-Regular.otf');
+    src: url('Grt-Regular.otf') format('opentype');
 }
 
 @font-face {
@@ -32,7 +31,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: GrotleyRegular, Georgia, sans-serif, monospace;
+    font-family: GRTRegular, JosefinSans, sans-serif, monospace;
     letter-spacing: 0.08em;
 }
 
@@ -58,7 +57,7 @@ h3 i,
 h4 i,
 h5 i,
 h6 i {
-    font-family: GrotleyRegular, Georgia, sans-serif, monospace;
+    font-family: GrotleyItalic, JosefinSans, sans-serif, monospace;
 }
 
 p,
@@ -79,18 +78,21 @@ strong {
 }
 
 ul#navlist li a {
-    font-family: GrotleyRegular, Georgia, Optima, monospace;
+    font-family: GRTRegular, JosefinSans, Optima, monospace;
 }
 
-.sidenav .contact_link a {
-    font-family: GrotleyRegular, Georgia, Optima, monospace;
+.sidenav .contact_link a,
+.sidenav_small .contact_link a {
+    font-family: GRTRegular, JosefinSans, Optima, monospace;
 }
 
-.sidenav .my_name {
-    font-family: GrotleyRegular, Georgia, Optima, monospace;
+.sidenav .my_name,
+.sidenav_small .my_name {
+    font-family: GRTRegular, JosefinSans, Optima, monospace;
 }
 
-.sidenav a {
+.sidenav a,
+.sidenav_small a {
     font-family: Optima, monospace;
 }
 
@@ -169,19 +171,20 @@ img {
 
 a:hover,
 ul#navlist li a:hover,
-.sidenav a:hover {
+.sidenav a:hover .sidenav_small a:hover {
     color: cornflowerblue;
 }
 
 a:visited,
 ul#navlist li a:visited,
-.sidenav a:visited {
+.sidenav a:visited .sidenav_small a:visited {
     color: darkblue;
 }
 
 a:visited:hover,
 ul#navlist li a:visited:hover,
-.sidenav a:visited:hover {
+.sidenav a:visited:hover,
+.sidenav_small a:visited:hover {
     color: grey;
 }
 
@@ -291,12 +294,22 @@ a:link {
 }
 
 /* style body */
-.sidenav {
+
+.sidenav,
+.sidenav_small {
     width: 180px;
     background: #eee;
     padding-top: 8px;
     padding-bottom: 8px;
     height: fit-content;
+}
+
+.sidenav:not(.sidenav_small) {
+    width: 180px;
+}
+
+.sidenav_small:not(.sidenav) {
+    width: 60px;
 }
 
 .sidenav .contact_link a {
@@ -308,22 +321,30 @@ a:link {
 }
 
 .sidenav .my_name {
-    padding-top: 14px;
+    padding-top: 8px;
     padding-bottom: 4px;
+    padding-left: 8px;
     color: darkblue;
     text-align: center;
+    justify-content: center;
     width: inherit;
     letter-spacing: 0.08em;
 }
 
-.sidenav a {
+.sidenav_small:not(.sidenav) .my_name {
+    padding-left: 0px;
+}
+
+.sidenav a,
+.sidenav_small a {
     display: flex;
     padding-top: 8px;
     text-decoration: none;
     color: darkblue;
 }
 
-.sidenav .sidenavlinks {
+.sidenav .sidenavlinks,
+.sidenav_small .sidenavlinks {
     padding-left: 8px;
     padding-right: 8px;
 }
@@ -334,7 +355,8 @@ a:link {
     border: 0px;
 }
 
-.sidenav .svg_icon {
+.sidenav .svg_icon,
+.sidenav_small .svg_icon {
     fill: currentColor;
     stroke: currentColor;
     height: 1em;
@@ -342,7 +364,8 @@ a:link {
     vertical-align: -0.125em;
 }
 
-.sidenav .nav_icon {
+.sidenav .nav_icon,
+.sidenav_small .nav_icon {
     display: block;
 }
 
@@ -353,7 +376,7 @@ a:link {
     height: inherit;
 }
 
-.main_index_main .box_holder:nth-of-type(1) {
+.main_index_main .box_holder:last-of-type {
     margin-right: 2em;
 }
 
@@ -432,7 +455,8 @@ a:link {
     margin-bottom: 0;
 }
 
-.sidenav a span.media_content {
+.sidenav a span.media_content,
+.sidenav_small a span.media_content {
     display: block;
     visibility: normal;
     padding-left: 0.5em;
@@ -771,6 +795,75 @@ iframe {
     border: none;
 }
 
+.sidenav_small:not(.sidenav) {
+    width: 60px;
+    z-index: 1;
+    left: 10px;
+    background: #eee;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 8px;
+}
+
+.sidenav_small:not(.sidenav) .my_name {
+    font-size: 0.5em;
+    color: darkblue;
+    width: inherit;
+    text-transform: capitalize;
+    text-align: center;
+    padding-top: 8px;
+}
+
+.sidenav_small:not(.sidenav) .contact_link {
+    width: inherit;
+    text-align: center;
+    justify-content: center;
+}
+
+.sidenav_small:not(.sidenav) .contact_link a {
+    font-size: 0.5em;
+    color: darkblue;
+    text-transform: capitalize;
+    padding-top: 8px;
+}
+
+.sidenav_small:not(.sidenav) hr.accent_hr {
+    display: none;
+}
+
+.sidenav_small:not(.sidenav) .sidenavlinks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.sidenav_small:not(.sidenav) .nav_icon {
+    margin: .2em;
+}
+
+.sidenav_small:not(.sidenav) .svg_holder {
+    margin: .2em;
+}
+
+.sidenav_small:not(.sidenav) a {
+    text-decoration: none;
+    display: flex;
+    color: darkblue;
+    text-align: center;
+    justify-content: center;
+}
+
+.sidenav_small:not(.sidenav) a span.media_content {
+    display: none;
+}
+
+.sidenav_small:not(.sidenav) img {
+    display: inline;
+    width: 60px;
+    overflow-clip-margin: content-box;
+}
+
+
 @media ((max-width: 700px) or (max-height: 700px)) {
 
     h1 {
@@ -798,7 +891,7 @@ iframe {
         top: -0.2em;
     }
 
-    .sidenav {
+    .sidenav_small {
         width: 60px;
         z-index: 1;
         left: 10px;
@@ -808,47 +901,48 @@ iframe {
         padding-top: 8px;
     }
 
-    .sidenav .my_name {
+    .sidenav_small .my_name {
         font-size: 0.5em;
         color: darkblue;
         width: inherit;
         text-transform: capitalize;
         text-align: center;
         padding-top: 8px;
+        padding-left: 0px;
     }
 
-    .sidenav .contact_link {
+    .sidenav_small .contact_link {
         width: inherit;
         text-align: center;
         justify-content: center;
     }
 
-    .sidenav .contact_link a {
+    .sidenav_small .contact_link a {
         font-size: 0.5em;
         color: darkblue;
         text-transform: capitalize;
         padding-top: 8px;
     }
 
-    hr.img_hr {
+    .sidenav_small hr.accent_hr {
         display: none;
     }
 
-    .sidenavlinks {
+    .sidenav_small .sidenavlinks {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
     }
 
-    .sidenav .nav_icon {
+    .sidenav_small .nav_icon {
         margin: .2em;
     }
 
-    .sidenav .svg_holder {
+    .sidenav_small .svg_holder {
         margin: .2em;
     }
 
-    .sidenav a {
+    .sidenav_small a {
         text-decoration: none;
         display: flex;
         color: darkblue;
@@ -856,14 +950,14 @@ iframe {
         justify-content: center;
     }
 
-    .sidenav a span.media_content {
+    .sidenav_small a span.media_content {
         display: none;
     }
 
-    .sidenav img {
+    .sidenav_small img {
+        display: inline;
         width: 60px;
-        display: block;
+        overflow-clip-margin: content-box;
     }
 
-    .main_index_main {}
 }
