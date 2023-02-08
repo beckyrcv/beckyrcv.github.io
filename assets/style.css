@@ -133,8 +133,13 @@ highlight {
     outline-color: darkblue;
 }
 
-p {
+p,
+li {
     color: black;
+}
+
+b {
+    color: darkblue;
 }
 
 hr {
@@ -393,6 +398,49 @@ a:link {
     flex-grow: 1;
 }
 
+/* make visivle scrolbars */
+.box_holder::-webkit-scrollbar,
+.box::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+/* make visivle scrolbars */
+.box_holder:-webkit-scrollbar,
+.box:-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+
+.box_holder::-webkit-scrollbar:vertical,
+.box::-webkit-scrollbar:vertical {
+    width: 15px;
+}
+
+.box_holder::-webkit-scrollbar:horizontal,
+.box::-webkit-scrollbar:horizontal {
+    height: 15px;
+}
+
+.box_holder::-webkit-scrollbar-thumb,
+.box::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    /* border color should match background, can't be transparent */
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.box_holder::-webkit-scrollbar-corner,
+.box::-webkit-scrollbar-corner {
+    background: rgba(0, 0, 0, 0);
+}
+
+.box_holder::-webkit-scrollbar-thumb {
+    border: 3px solid aliceblue;
+}
+
+.box::-webkit-scrollbar-thumb {
+    border: 3px solid #eee;
+}
+
 .box_holder.row {
     flex-direction: row;
 }
@@ -404,10 +452,12 @@ a:link {
 .box {
     padding: 0.5em;
     padding-right: 0.75em;
+    padding-bottom: 1em;
     position: relative;
     background-color: #dfeaff;
     flex-grow: 1;
     flex-basis: content;
+    overflow: scroll;
 }
 
 .box:hover {
