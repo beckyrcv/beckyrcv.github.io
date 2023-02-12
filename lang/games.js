@@ -200,7 +200,7 @@ function setupPronounDivs(game_html, split_gender) {
 }
 
 //measure width of text
-function getTextDimensions(input_ele) {
+function getTextDimensions(input_ele, maxwidth) {
     var font = getFontSize(input_ele) + " " + getFont(getLanguage(input_ele));
     var canvas = document.createElement("canvas");
     var context = canvas.getContext("2d");
@@ -208,6 +208,12 @@ function getTextDimensions(input_ele) {
     var metrics = context.measureText(input_ele.textContent);
     var width = metrics.width;
     var height = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
+    if (!(maxwidth === "0px")) {
+        if (width > parseInt(maxwidth.slice(0, -2))) {
+            height = Math.ceil(width / parseInt(maxwidth.slice(0, -2))) * height;
+            width = parseInt(maxwidth.slice(0, -2));
+        }
+    }
     return [width, height];
 }
 
@@ -237,12 +243,12 @@ function getFontSize(input_ele) {
     return window.getComputedStyle(input_ele).getPropertyValue("font-size");
 }
 
-function findCardWidthAndHeight(selector, width_extra, height_extra, flip_cat) {
+function findCardWidthAndHeight(selector, width_extra, height_extra, maxwidth) {
     var max_width = 0;
     var max_height = 0;
     var game_divs = $(selector);
     for (var jj = 0; jj < game_divs.length; jj++) {
-        var out = getTextDimensions(game_divs[jj]);
+        var out = getTextDimensions(game_divs[jj], maxwidth);
         max_width = (out[0] > max_width ? out[0] : max_width);
         max_height = (out[1] > max_height ? out[1] : max_height);
     }
@@ -526,7 +532,11 @@ function setupGame(game_holder, num, input) {
     var game_setup_record = DOMPurify.sanitize(game_holder.innerHTML);
     game_holder.innerHTML = game_html;
 
-    var width_height = findCardWidthAndHeight("#" + game_id + " div.game_row div", 25, 0);
+    var maxwidth = "0px";
+    if (game_holder.getAttribute("data-maxwidth")) {
+        maxwidth = game_holder.dataset.maxwidth;
+    }
+    var width_height = findCardWidthAndHeight("#" + game_id + " div.game_row div", 25, 0, maxwidth);
 
     document.querySelectorAll("#" + game_id + " div.game_row div").forEach(function (match_div) {
         match_div.style.width = width_height[0];

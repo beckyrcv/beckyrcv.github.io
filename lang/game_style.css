@@ -59,6 +59,13 @@ div.categories_table div {
     margin: 0.05em;
 }
 
+div.matching_game div.matching {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 div.catagorizing_game div.matching_table div {
     position: relative;
 }

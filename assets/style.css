@@ -13,10 +13,16 @@
         url('GrotleyItalic-7BD9D.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: OptExt;
+    src: url('Opt_ext.otf');
+    src: url('Opt_ext.otf') format('opentype');
+}
+
 /* base stylings */
 
 body {
-    font-family: Optima, sans-serif, monospace;
+    font-family: Optima, OptExt, sans-serif, monospace;
     margin: 0;
     position: fixed;
     width: 100%;
@@ -33,16 +39,6 @@ h5,
 h6 {
     font-family: GRTRegular, JosefinSans, sans-serif, monospace;
     letter-spacing: 0.08em;
-}
-
-.box button + h1,
-.box button + h2,
-.box button + h3,
-.box button + h4,
-.box button + h5,
-.box button + h6 {
-    margin-block-start: 0.2em;
-    margin-right: 1em;
 }
 
 h1 em,
@@ -63,37 +59,40 @@ h6 i {
 p,
 input,
 select,
-option {
-    font-family: Optima, monospace;
+option,
+ul li,
+ol li {
+    font-family: Optima, OptExt, monospace;
+    font-size: normal;
 }
 
 b {
-    font-family: Optima, monospace;
+    font-family: Optima, OptExt, monospace;
     font-style: bold;
 }
 
 strong {
-    font-family: Optima, monospace;
+    font-family: Optima, OptExt, monospace;
     font-style: bold;
 }
 
 ul#navlist li a {
-    font-family: GRTRegular, JosefinSans, Optima, monospace;
+    font-family: GRTRegular, JosefinSans, Optima, OptExt, monospace;
 }
 
 .sidenav .contact_link a,
 .sidenav_small .contact_link a {
-    font-family: GRTRegular, JosefinSans, Optima, monospace;
+    font-family: GRTRegular, JosefinSans, Optima, OptExt, monospace;
 }
 
 .sidenav .my_name,
 .sidenav_small .my_name {
-    font-family: GRTRegular, JosefinSans, Optima, monospace;
+    font-family: GRTRegular, JosefinSans, Optima, OptExt, monospace;
 }
 
 .sidenav a,
 .sidenav_small a {
-    font-family: Optima, monospace;
+    font-family: Optima, OptExt, monospace;
 }
 
 /* image stylings */
@@ -621,16 +620,18 @@ div.box.expanded {
 
 /* style dropdowns (details + summary) */
 
-summary {
-    display: block;
+summary,
+summary h2 {
+    display: inline;
+    padding-left: 0;
 }
 
-details {
+details.indent {
     padding-left: 1em;
 }
 
-summary + details {
-    margin-top: 1em;
+details {
+    margin-top: 0.83em;
 }
 
 summary h3,
@@ -644,13 +645,29 @@ summary::after {
     display: inline-block;
     transition: 0.2s;
     content: '\203A';
+    font-size: 150%;
+    transform: scale(2, 1);
     /* chevron */
-    margin-bottom: 1em;
+}
+
+details {
+    margin-bottom: 0em;
 }
 
 details[open] > summary::after {
-    transform: rotate(90deg);
+    transform: rotate(90deg) scale(2, 1);
     margin-bottom: 0em;
+}
+
+.box button + h1,
+.box button + h2,
+.box button + h3,
+.box button + h4,
+.box button + h5,
+.box button + h6,
+.box button + details {
+    margin-block-start: 0.2em;
+    margin-right: 1em;
 }
 
 /* style custom vocab */
@@ -913,8 +930,44 @@ iframe {
     overflow-clip-margin: content-box;
 }
 
+div.display_content_holder.outer {
+    padding: 0.5em;
+    justify-content: space-evenly;
+}
 
-@media ((max-width: 700px) or (max-height: 700px)) {
+div.display_content_holder.inner {
+    padding: 0.5em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+}
+
+div.display_content_holder.nested {
+    display: flex;
+    flex-wrap: no-wrap;
+    border: 1px solid darkblue;
+    gap: 0.25em;
+    padding: 0.25em;
+}
+
+div.display_content_holder.break {
+    flex-basis: 100%;
+    height: 0;
+}
+
+div.display_content_box {
+    border: 1px solid orange;
+    background-color: white;
+    min-width: 2em;
+    height: 2em;
+    padding: 0.25em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+@media ((max-width: 600px) or (max-height: 600px)) {
 
     h1 {
         font-size: 1.5em;
@@ -928,7 +981,12 @@ iframe {
         font-size: 1em;
     }
 
-    p {
+    p,
+    input,
+    select,
+    option,
+    ul li,
+    ol li {
         font-size: .83em;
     }
 

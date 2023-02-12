@@ -18,10 +18,17 @@
     font-style: bold;
 }
 
+@font-face {
+    font-family: OptExt;
+    src: url('Opt_ext.otf');
+    src: url('Opt_ext.otf') format('opentype');
+}
+
+
 /* add language fonts to text stylings */
 
 body {
-    font-family: Annapurna, Optima, sans-serif, monospace;
+    font-family: Annapurna, Optima, OptExt, sans-serif, monospace;
 }
 
 p,
@@ -29,17 +36,22 @@ input,
 select,
 button,
 option {
-    font-family: Annapurna, Optima, monospace;
+    font-family: Annapurna, Optima, OptExt, monospace;
 }
 
 b {
-    font-family: AnnapurnaBold, Optima, monospace;
+    font-family: AnnapurnaBold, Optima, OptExt, monospace;
     font-style: bold;
 }
 
 strong {
-    font-family: AnnapurnaBold, Optima, monospace;
+    font-family: AnnapurnaBold, Optima, OptExt, monospace;
     font-style: bold;
+}
+
+.alt_glyph {
+    font-family: Annapurna;
+    font-feature-settings: 'ss15', 'ss01';
 }
 
 .parse_verbs_form input,
