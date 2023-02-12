@@ -18,12 +18,23 @@
     font-style: bold;
 }
 
+@font-feature-values Annapurna {
+    @styleset {
+        alt: 1, 15;
+    }
+}
+
+@font-feature-values AnnapurnaBold {
+    @styleset {
+        alt: 1, 15;
+    }
+}
+
 @font-face {
     font-family: OptExt;
     src: url('Opt_ext.otf');
     src: url('Opt_ext.otf') format('opentype');
 }
-
 
 /* add language fonts to text stylings */
 
@@ -52,6 +63,7 @@ strong {
 .alt_glyph {
     font-family: Annapurna;
     font-feature-settings: 'ss15', 'ss01';
+    font-variant-alternates: styleset(alt);
 }
 
 .parse_verbs_form input,
