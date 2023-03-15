@@ -145,6 +145,7 @@ function addExpandButton(page_type = "child") {
     }
     var boxes = document.getElementsByClassName("box");
     for (var i = 0; i < boxes.length; i++) {
+        if (!boxes[i].classList.contains("no_box")) {
         if (!boxes[i].firstElementChild.classList.contains("slider-wrapper")) {
             var new_div = document.createElement("button");
             new_div.classList.add('button');
@@ -174,6 +175,7 @@ function addExpandButton(page_type = "child") {
 
             });
             boxes[i].prepend(new_div);
+        }
         }
     }
 }
