@@ -29,3 +29,8 @@ ul#navlist li:not(:last-child)::after {
     margin-right: 0.25em;
     margin-left: 0.25em;
 }
+
+svg {
+    width: 1em;
+    height: 1em;
+}
